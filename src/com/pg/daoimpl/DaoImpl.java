@@ -4,6 +4,9 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.List;
+
 import com.pg.bean.Pg_user;
 import com.pg.db.GetConn;
 
@@ -59,5 +62,69 @@ public class DaoImpl
 			e.printStackTrace();
 		}
 		return user;
+	}
+	
+	//查询所总条数   
+    public int getCount(String name,String Condition){   
+    	String sql="select count(*) as pageCount from "+name+" "+Condition;   
+    	System.out.println(sql);
+    	int i=-1;   
+    	GetConn getConn=new GetConn();
+    	ResultSet rs = null;
+    	Connection conn=getConn.getConnection();
+    	try {
+    		PreparedStatement ps=conn.prepareStatement(sql);
+    		rs=ps.executeQuery();
+    		if(rs!=null){    					
+    			rs.next();  
+    			i=rs.getInt("pageCount");  
+    		}
+    	} catch (SQLException e) {   
+    		e.printStackTrace();   
+    	}   
+    	return i;   
+    } 
+    
+    public List<Pg_user> GetAllUsers(String currentPage,String eachPage) 
+	{
+		int rows;
+		GetConn getConn=new GetConn();
+		ResultSet rs = null;
+		Connection conn=getConn.getConnection();
+		List<Pg_user> list=new ArrayList<Pg_user>();
+		Pg_user puser = null;
+		try {
+			PreparedStatement ps=conn.prepareStatement("select UserID,UserCode,UserName,Telephone,Mobile,Email"
+					+ " from pg_user order by ModifiedDate desc  limit ?, ?");
+			int intcurrentPage = Integer.parseInt(currentPage);
+			int inteachPage = Integer.parseInt(eachPage);
+			if(currentPage.equals("0")){
+				ps.setInt(1, 0);
+			}else{
+				ps.setInt(1, (intcurrentPage-1)*inteachPage);
+			}
+			ps.setInt(2, inteachPage);
+			rs=ps.executeQuery();
+			if(rs!=null){    		
+	    		rs.last();
+	    		rows = rs.getRow();
+	    		rs.beforeFirst();
+	    		for(int i=0;i<rows;i++)
+		    	{	    			
+		    		rs.next();
+		    		puser = new Pg_user();
+		    		puser.setUserID(rs.getString("UserID"));
+		    		puser.setUserCode(rs.getString("UserCode"));
+		    		puser.setUserName(rs.getString("UserName"));
+		    		puser.setTelephone(rs.getString("Telephone"));
+		    		puser.setMobile(rs.getString("Mobile"));
+		    		puser.setEmail(rs.getString("Email"));
+		    		list.add(puser);
+		    	}
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		return list;
 	}
 }

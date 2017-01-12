@@ -1,0 +1,168 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+    	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+    	<title>人员列表</title>
+    	<!-- Bootstrap -->
+    	<link href="css/bootstrap.css" rel="stylesheet">
+        <link href="css/bootstrap-responsive.css" rel="stylesheet">
+        <link href="css/bootstrap-datetimepicker.min.css" rel="stylesheet" media="screen">
+    	<script type="text/javascript" src="js/jquery.min.js"></script>
+		<script type="text/javascript" src="js/bootstrap.js"></script>
+        <script type="text/javascript" src="js/bootstrap-datetimepicker.min.js" charset="UTF-8"></script>
+        <script type="text/javascript" src="js/locales/bootstrap-datetimepicker.zh-CN.js" charset="UTF-8"></script>
+	</head>
+    <body onload="getdata()">
+    	<form class="form-horizontal" id = "ajaxFrm" >
+        	<table class="table table-hover table-bordered">
+            	<thead>
+                	<tr>
+                        <th colspan="5"><h3>人员列表</h3></th>                                         
+                    </tr>
+                </thead>
+                <tbody id="tbody">
+				 <tr class="warning">
+                        <td width="20%">
+                        	编码
+                        </td >
+                       <td width="20%">
+                        	姓名
+                        </td>
+                        <td width="20%">
+                        	电话
+                        </td> 
+                        <td width="20%">
+                        	手机
+                        </td>
+                        <td width="20%">
+                        	电子邮件
+                        </td>
+                    </tr>                  
+                    <tr>
+                        <td width="20%">
+                        	<a href="javascript:modify();" target="_blank"></a>
+                        </td >
+                        <td width="20%">                    	
+                        </td>
+                        <td width="20%">                   
+                        </td>
+                        <td width="20%">                              	        
+                        </td>  
+                        <td width="20%">                              	        
+                        </td> 
+                    </tr>
+                    <tr class="warning">
+                        <td colspan="1" >
+                        </td >
+                        <td colspan="3" align="center">
+                        <a href="javascript:paging(1);" target="_blank">首页</a>                        	
+                        	
+						<a href="javascript:paging();" target="_blank">末页</a>
+                        </td>
+                        <td colspan="1" >
+                        </td> 
+                    </tr>
+                </tbody>
+            </table>
+        </form>
+    </body>
+<script type="text/javascript" src="js/jquery-1.4.1.js"></script>
+<script type="text/javascript">
+	var url = document.URL;
+	var htmltmp="";
+	var count=-1;
+	function getdata(){
+		//alert("==url=="+url);		
+		htmltmp="<tr class='warning'><td width='20%'>编码</td >"+
+		"<td width='20%'>姓名</td><td width='20%'>电话</td><td width='20%'>手机</td><td width='20%'>电子邮件</td></tr>";
+		 $.ajax({
+		        type: "Post",
+		        url: "GetCount?Name=pg_user&Condition=where Status = 1",
+		        dataType: "html",
+		        data: {		            
+		        },
+		        success: function (data) {
+		        	if(data=="error"){
+		        		count = -1;
+		        	}else{
+		        		count = data;
+		        		init(1);
+		        	}	        	
+		        },
+		       error: function( msg ) { 
+		    	   alert("获取人员信息失败"); 
+		        }
+		});		
+	}	
+	function init(currentPage) {
+		if(count!=-1){
+			 $.ajax({
+			        type: "Post",
+			        url: "GetAllUsers?CurrentPage="+currentPage+"&EachPage=10",
+			        dataType: "json",
+			        data: {		            
+			        },
+			        success: function (data) {
+			        	if(data=="error"){
+			        		alert("帐号或密码错误!");
+			        	}else{			        		
+                        	for(var i=0;i<data.length;i++){  
+                        		htmltmp=htmltmp+"<tr><td width='20%'><a href='javascript:modify("+data[i].UserID+");' target='_blank'>"+data[i].UserCode+"</a></td>"+
+                        		"<td width='20%'>"+data[i].UserName+"</td><td width='20%'>"+data[i].Telephone+"</td>"+
+                        		"<td width='20%'>"+data[i].Mobile+"</td><td width='20%'>"+data[i].Email+"</td>";		
+                        	} 
+                          //$.each(data,function(i,v){      
+                          //    alert("==data=="+v.UserID);
+                          //});	
+                          end();
+			        	}	        	
+			        },
+			       error: function( msg ) { 
+			    	   alert("修改人员信息失败"); 
+			       }
+			});				
+		}
+	}
+	function end(){
+		htmltmp=htmltmp+"<tr class='warning'><td colspan='1' ></td ><td colspan='3' align='center'><a href='javascript:paging(1);'"+
+		"target='_blank'>首页&nbsp</a>";
+		var sum = count*1+1;
+		for(var j = 1; j<sum; j++){ 
+			htmltmp=htmltmp+"<a href='javascript:paging("+j+");' target='_blank'>"+j+"</a>"      
+        }
+		htmltmp=htmltmp+"<a href='javascript:paging("+count+");' target='_blank'>&nbsp末页</a></td><td colspan='1' ></td></tr>";
+		document.getElementById('tbody').innerHTML=htmltmp;
+	}
+	function paging(currentPage) {
+		htmltmp="<tr class='warning'><td width='20%'>编码</td >"+
+		"<td width='20%'>姓名</td><td width='20%'>电话</td><td width='20%'>手机</td><td width='20%'>电子邮件</td></tr>";
+		init(currentPage)
+	}
+	function confirm(phonenumber) {
+		$.ajax({
+			type : "Post",
+			url : "jpushUserListResult.jsp?phonenumber=" + phonenumber,
+			dataType : "html",
+			data : {
+			//organiseUnitID: selorganiseUnitID,
+			//CharType: 'CockiptTrendChange'
+			},
+			success : function(data) {
+				if (data > 0) {
+					window.location.reload();
+				} else {
+					alert("审核失败请重试");
+				}
+			},
+			error : function(msg) {
+				alert("审核失败请重试");
+			}
+		});
+	}
+	function modify(userid) {
+		window.open("UserModify.html?id=" + userid, "",
+						"height=700, width=800");
+	}
+</script>
+</html>
+

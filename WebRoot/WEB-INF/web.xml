@@ -10,10 +10,34 @@
     <servlet-name>Login</servlet-name>
     <servlet-class>com.pg.servlet.Login</servlet-class>
   </servlet>
+  
+  <servlet>
+    <description>This is the description of my J2EE component</description>
+    <display-name>This is the display name of my J2EE component</display-name>
+    <servlet-name>GetCount</servlet-name>
+    <servlet-class>com.pg.servlet.GetCount</servlet-class>
+  </servlet>
+  
+  <servlet>
+    <description>This is the description of my J2EE component</description>
+    <display-name>This is the display name of my J2EE component</display-name>
+    <servlet-name>GetAllUsers</servlet-name>
+    <servlet-class>com.pg.servlet.GetAllUsers</servlet-class>
+  </servlet>
 
   <servlet-mapping>
     <servlet-name>Login</servlet-name>
     <url-pattern>/Login</url-pattern>
+  </servlet-mapping>
+  
+  <servlet-mapping>
+    <servlet-name>GetCount</servlet-name>
+    <url-pattern>/GetCount</url-pattern>
+  </servlet-mapping>
+  
+  <servlet-mapping>
+    <servlet-name>GetAllUsers</servlet-name>
+    <url-pattern>/GetAllUsers</url-pattern>
   </servlet-mapping>
   
   <welcome-file-list>

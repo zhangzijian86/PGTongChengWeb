@@ -13,7 +13,7 @@ import com.pg.bean.Pg_user;
 import com.pg.daoimpl.DaoImpl;
 
 @SuppressWarnings("serial")
-public class Login extends HttpServlet {
+public class GetAllUsers extends HttpServlet {
 	
 	public void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
@@ -26,16 +26,15 @@ public class Login extends HttpServlet {
 		request.setCharacterEncoding("utf-8");
 		response.setCharacterEncoding("utf-8");
 	    PrintWriter out=response.getWriter();
-		String UserCode=request.getParameter("UserCode");
-		String Password=request.getParameter("Password");
-//		System.out.println("====doPost=============usermobile======"+UserCode);
+		String CurrentPage=request.getParameter("CurrentPage");
+		String EachPage=request.getParameter("EachPage");
+		System.out.println("====doPost=============CurrentPage======"+CurrentPage);
+		System.out.println("====doPost=============EachPage======"+EachPage);
 		DaoImpl userDaoImpl=new DaoImpl();
-		Pg_user puser=userDaoImpl.login(UserCode,Password);
-		if(puser!=null){
-			List<Pg_user> list1=new ArrayList<Pg_user>();
+		List<Pg_user> list=userDaoImpl.GetAllUsers(CurrentPage,EachPage);
+		if(list!=null&&list.size()>0){			
 			Gson gson=new Gson();//利用google提供的gson将一个list集合写成json形式的字符串		
-			list1.add(puser);
-			String jsonstring=gson.toJson(list1);
+			String jsonstring=gson.toJson(list);
 			out.write(jsonstring);
 		}else{
 			out.write("error");
