@@ -24,6 +24,35 @@
     <servlet-name>GetAllUsers</servlet-name>
     <servlet-class>com.pg.servlet.GetAllUsers</servlet-class>
   </servlet>
+  
+  <servlet>
+    <description>This is the description of my J2EE component</description>
+    <display-name>This is the display name of my J2EE component</display-name>
+    <servlet-name>SubmittedMaterial</servlet-name>
+    <servlet-class>com.pg.servlet.SubmittedMaterial</servlet-class>
+  </servlet>
+  
+  <servlet>
+    <description>This is the description of my J2EE component</description>
+    <display-name>This is the display name of my J2EE component</display-name>
+    <servlet-name>PriceFeedback</servlet-name>
+    <servlet-class>com.pg.servlet.PriceFeedback</servlet-class>
+  </servlet>
+  
+  <servlet>
+    <description>This is the description of my J2EE component</description>
+    <display-name>This is the display name of my J2EE component</display-name>
+    <servlet-name>AcceptOrder</servlet-name>
+    <servlet-class>com.pg.servlet.AcceptOrder</servlet-class>
+  </servlet>
+  
+  <servlet>
+    <description>This is the description of my J2EE component</description>
+    <display-name>This is the display name of my J2EE component</display-name>
+    <servlet-name>LaunchOrder</servlet-name>
+    <servlet-class>com.pg.servlet.LaunchOrder</servlet-class>
+  </servlet>  
+   
 
   <servlet-mapping>
     <servlet-name>Login</servlet-name>
@@ -39,6 +68,27 @@
     <servlet-name>GetAllUsers</servlet-name>
     <url-pattern>/GetAllUsers</url-pattern>
   </servlet-mapping>
+  
+  <servlet-mapping>
+    <servlet-name>SubmittedMaterial</servlet-name>
+    <url-pattern>/SubmittedMaterial</url-pattern>
+  </servlet-mapping>
+  
+  <servlet-mapping>
+    <servlet-name>PriceFeedback</servlet-name>
+    <url-pattern>/PriceFeedback</url-pattern>
+  </servlet-mapping>
+  
+  <servlet-mapping>
+    <servlet-name>LaunchOrder</servlet-name>
+    <url-pattern>/LaunchOrder</url-pattern>
+  </servlet-mapping>
+  
+  <servlet-mapping>
+    <servlet-name>AcceptOrder</servlet-name>
+    <url-pattern>/AcceptOrder</url-pattern>
+  </servlet-mapping>
+  
   
   <welcome-file-list>
     <welcome-file>index.jsp</welcome-file>

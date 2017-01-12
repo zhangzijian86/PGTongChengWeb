@@ -6,6 +6,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.UUID;
 
 import com.pg.bean.Pg_user;
 import com.pg.db.GetConn;
@@ -127,4 +128,53 @@ public class DaoImpl
 		}
 		return list;
 	}
+    
+    public int SubmittedMaterial(String OrderCode,String Remark,String CreatedBy){
+    	GetConn getConn=new GetConn();
+		int i = 0;
+		Connection conn=getConn.getConnection();
+		try {
+			PreparedStatement ps=conn.prepareStatement(""
+					+ "insert into pg_order "
+					+ "("
+					+ "OrderID,OrderCode,Status,Remark,CreatedBy,CreatedDate,ModifiedBy,ModifiedDate"
+					+ ")values(?,?,'0',?,?,now(),?,now());"
+					);		
+			System.out.println("===UUID="+UUID.randomUUID().toString());
+			ps.setString(1, UUID.randomUUID().toString());	
+			ps.setString(2,OrderCode);
+			ps.setString(3,Remark);			
+			ps.setString(4,CreatedBy);	
+			ps.setString(5,CreatedBy);
+			System.out.println("=addOnePrice=sql="+ps.toString());
+			i=ps.executeUpdate();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		getConn.closeconn(conn);
+    	return i;
+    }
+    
+    public int LaunchOrder(String OrderCode,String CreatedBy){
+    	GetConn getConn=new GetConn();
+		int i = 0;
+		Connection conn=getConn.getConnection();
+		try {
+			PreparedStatement ps=conn.prepareStatement("update pg_order "
+													+ "set Status = 2, "		
+													+ "ModifiedBy = ?, "
+													+ "ModifiedDate = now() "								
+													+ "where OrderCode = ? "
+													);
+			
+			ps.setString(1,CreatedBy);	
+			ps.setString(2,OrderCode);				
+			System.out.println("=updateOneUser=sql="+ps.toString());
+			i=ps.executeUpdate();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		getConn.closeconn(conn);
+    	return i;
+    }
 }
