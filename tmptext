@@ -1,0 +1,291 @@
+ <tr class='warning'><td width='20%'>编码</td ><td width='20%'>姓名</td><td width='20%'>电话</td><td width='20%'>传真</td><td width='20%'>电子邮件</td></tr>             
+
+
+<a href='javascript:modify();' target='_blank'></a>
+
+
+<tr class='warning'><td colspan='1' ></td ><td colspan='3' align='center'><a href='javascript:paging(1);' target='_blank'>首页</a><a href='javascript:paging();' target='_blank'>末页</a></td><td colspan='1' ></td></tr>
+
+insert into pg_user
+(
+UserID,UserCode,UserName,Password,PasswordKey,PasswordIV,UserClass,Gender,
+ISDN,Telephone,Mobile,Fax,Email,Address,Photo,Age,Birthday,Remark,Status,CreatedBy,CreatedDate,ModifiedBy,ModifiedDate
+)
+values
+('1','zhangzijian','张子健','123456','','','1','1','110226','60962005','13581905786','123456','zhangzijian@163.com','北京市','','30','1986-11-25','root管理员','1','zhangzijian','2017-01-11','zhangzijian','2017-01-11');
+
+insert into pg_user
+(
+UserID,UserCode,UserName,Password,PasswordKey,PasswordIV,UserClass,Gender,
+ISDN,Telephone,Mobile,Fax,Email,Address,Photo,Age,Birthday,Remark,Status,CreatedBy,CreatedDate,ModifiedBy,ModifiedDate
+)
+values
+('2','zhangzijian1','张子健1','123456','','','1','1','110226','60962005','13581905786','123456','zhangzijian@163.com','北京市','','30','1986-11-25','root管理员','1','zhangzijian','2017-01-11','zhangzijian','2017-01-11');
+
+insert into pg_user
+(
+UserID,UserCode,UserName,Password,PasswordKey,PasswordIV,UserClass,Gender,
+ISDN,Telephone,Mobile,Fax,Email,Address,Photo,Age,Birthday,Remark,Status,CreatedBy,CreatedDate,ModifiedBy,ModifiedDate
+)
+values
+('3','zhangzijian2','张子健2','123456','','','1','1','110226','60962005','13581905786','123456','zhangzijian@163.com','北京市','','30','1986-11-25','root管理员','1','zhangzijian','2017-01-11','zhangzijian','2017-01-11');
+
+insert into pg_user
+(
+UserID,UserCode,UserName,Password,PasswordKey,PasswordIV,UserClass,Gender,
+ISDN,Telephone,Mobile,Fax,Email,Address,Photo,Age,Birthday,Remark,Status,CreatedBy,CreatedDate,ModifiedBy,ModifiedDate
+)
+values
+('4','zhangzijian3','张子健3','123456','','','1','1','110226','60962005','13581905786','123456','zhangzijian@163.com','北京市','','30','1986-11-25','root管理员','1','zhangzijian','2017-01-11','zhangzijian','2017-01-11');
+
+
+insert into pg_user
+(
+UserID,UserCode,UserName,Password,PasswordKey,PasswordIV,UserClass,Gender,
+ISDN,Telephone,Mobile,Fax,Email,Address,Photo,Age,Birthday,Remark,Status,CreatedBy,CreatedDate,ModifiedBy,ModifiedDate
+)
+values
+('5','zhangzijian5','张子健5','123456','','','1','1','110226','60962005','13581905786','123456','zhangzijian@163.com','北京市','','30','1986-11-25','root管理员','1','zhangzijian','2017-01-11','zhangzijian','2017-01-11');
+
+insert into pg_user
+(
+UserID,UserCode,UserName,Password,PasswordKey,PasswordIV,UserClass,Gender,
+ISDN,Telephone,Mobile,Fax,Email,Address,Photo,Age,Birthday,Remark,Status,CreatedBy,CreatedDate,ModifiedBy,ModifiedDate
+)
+values
+('6','zhangzijian6','张子健6','123456','','','1','1','110226','60962005','13581905786','123456','zhangzijian@163.com','北京市','','30','1986-11-25','root管理员','1','zhangzijian','2017-01-11','zhangzijian','2017-01-11');
+
+insert into pg_user
+(
+UserID,UserCode,UserName,Password,PasswordKey,PasswordIV,UserClass,Gender,
+ISDN,Telephone,Mobile,Fax,Email,Address,Photo,Age,Birthday,Remark,Status,CreatedBy,CreatedDate,ModifiedBy,ModifiedDate
+)
+values
+('7','zhangzijian7','张子健7','123456','','','1','1','110226','60962005','13581905786','123456','zhangzijian@163.com','北京市','','30','1986-11-25','root管理员','1','zhangzijian','2017-01-11','zhangzijian','2017-01-11');
+
+insert into pg_user
+(
+UserID,UserCode,UserName,Password,PasswordKey,PasswordIV,UserClass,Gender,
+ISDN,Telephone,Mobile,Fax,Email,Address,Photo,Age,Birthday,Remark,Status,CreatedBy,CreatedDate,ModifiedBy,ModifiedDate
+)
+values
+('8','zhangzijian8','张子健8','123456','','','1','1','110226','60962005','13581905786','123456','zhangzijian@163.com','北京市','','30','1986-11-25','root管理员','1','zhangzijian','2017-01-11','zhangzijian','2017-01-11');
+
+insert into pg_user
+(
+UserID,UserCode,UserName,Password,PasswordKey,PasswordIV,UserClass,Gender,
+ISDN,Telephone,Mobile,Fax,Email,Address,Photo,Age,Birthday,Remark,Status,CreatedBy,CreatedDate,ModifiedBy,ModifiedDate
+)
+values
+('9','zhangzijian9','张子健9','123456','','','1','1','110226','60962005','13581905786','123456','zhangzijian@163.com','北京市','','30','1986-11-25','root管理员','1','zhangzijian','2017-01-11','zhangzijian','2017-01-11');
+
+
+insert into pg_user
+(
+UserID,UserCode,UserName,Password,PasswordKey,PasswordIV,UserClass,Gender,
+ISDN,Telephone,Mobile,Fax,Email,Address,Photo,Age,Birthday,Remark,Status,CreatedBy,CreatedDate,ModifiedBy,ModifiedDate
+)
+values
+('10','zhangzijian10','张子健10','123456','','','1','1','110226','60962005','13581905786','123456','zhangzijian@163.com','北京市','','30','1986-11-25','root管理员','1','zhangzijian','2017-01-11','zhangzijian','2017-01-11');
+insert into pg_user
+(
+UserID,UserCode,UserName,Password,PasswordKey,PasswordIV,UserClass,Gender,
+ISDN,Telephone,Mobile,Fax,Email,Address,Photo,Age,Birthday,Remark,Status,CreatedBy,CreatedDate,ModifiedBy,ModifiedDate
+)
+values
+('11','zhangzijian11','张子健11','123456','','','1','1','110226','60962005','13581905786','123456','zhangzijian@163.com','北京市','','30','1986-11-25','root管理员','1','zhangzijian','2017-01-11','zhangzijian','2017-01-11');
+insert into pg_user
+(
+UserID,UserCode,UserName,Password,PasswordKey,PasswordIV,UserClass,Gender,
+ISDN,Telephone,Mobile,Fax,Email,Address,Photo,Age,Birthday,Remark,Status,CreatedBy,CreatedDate,ModifiedBy,ModifiedDate
+)
+values
+('12','zhangzijian12','张子健12','123456','','','1','1','110226','60962005','13581905786','123456','zhangzijian@163.com','北京市','','30','1986-11-25','root管理员','1','zhangzijian','2017-01-11','zhangzijian','2017-01-11');
+
+
+insert into pg_order(OrderID,OrderCode,Status,Remark,FlowRemark,Price,CreatedBy,CreatedDate,ModifiedBy,ModifiedDate)values('1','11',-1,'11','a11','b11','zzj',now(),'zzj',now());
+insert into pg_order(OrderID,OrderCode,Status,Remark,FlowRemark,Price,CreatedBy,CreatedDate,ModifiedBy,ModifiedDate)values('2','22',1,'22','a22','b22','zzj',now(),'zzj',now());
+insert into pg_order(OrderID,OrderCode,Status,Remark,FlowRemark,Price,CreatedBy,CreatedDate,ModifiedBy,ModifiedDate)values('3','33',2,'33','a33','b33','zzj',now(),'zzj',now());
+insert into pg_order(OrderID,OrderCode,Status,Remark,FlowRemark,Price,CreatedBy,CreatedDate,ModifiedBy,ModifiedDate)values('4','a44',3,'44','a44','b44','zzj',now(),'zzj',now());
+insert into pg_order(OrderID,OrderCode,Status,Remark,FlowRemark,Price,CreatedBy,CreatedDate,ModifiedBy,ModifiedDate)values('5','a55',4,'55','a55','b55','zzj',now(),'zzj',now());
+insert into pg_order(OrderID,OrderCode,Status,Remark,FlowRemark,Price,CreatedBy,CreatedDate,ModifiedBy,ModifiedDate)values('6','66',5,'66','a66','b66','zzj',now(),'zzj',now());
+insert into pg_order(OrderID,OrderCode,Status,Remark,FlowRemark,Price,CreatedBy,CreatedDate,ModifiedBy,ModifiedDate)values('7','100',100,'100','a100','b100','zzj',now(),'zzj',now());
+
+
+
+http://127.0.0.1:8080/WebRoot/GetAllOrder?Model=0&Type=0&Condition=&CreatedBy=zzj&CurrentPage=0&EachPage=10
+
+ `OrderID` varchar(36) NOT NULL COMMENT '订单编码',
+
+  `Status` int(11) NOT NULL DEFAULT '1' COMMENT '订单状态(-1,作废 0,提交材料 1,价格反馈 2,接受订单 3,开始1 4,开始2 5,开始3)',
+
+  `Remark` varchar(1000) DEFAULT NULL COMMENT '销售备注',
+
+  `FlowRemark` varchar(1000) DEFAULT NULL COMMENT '流程备注',
+
+  `Price` varchar(255) DEFAULT NULL COMMENT '价格',
+
+  `CreatedBy` varchar(20) NOT NULL DEFAULT 'SystemAdmin' COMMENT '创建人',
+
+  `CreatedDate` datetime NOT NULL COMMENT '创建时间',
+
+  `ModifiedBy` varchar(20) NOT NULL DEFAULT 'SystemAdmin' COMMENT '修改人',
+
+  `ModifiedDate` datetime NOT NULL COMMENT '修改时间',
+
+private String OrderID;//订单编码
+private String Status;//订单状态(-1,作废 0,提交材料 1,价格反馈 2,接受订单 3,开始1 4,开始2 5,开始3)
+private String Remark;//销售备注
+private String FlowRemark;//流程备注
+private String Price;//价格
+private String CreatedBy;//创建人
+private String CreatedDate;//创建时间
+private String ModifiedBy;//修改人
+private String ModifiedDate;//修改时间
+
+
+
+
+			htmltmp=htmltmp+'<tr class='warning'><td colspan='1' ></td ><td colspan='3' align='center'><a href='javascript:paging(1);''+
+			'target='_blank'>首页</a>';
+			for(int j = 1; j<count+1 ; j++){ 
+				htmltmp=htmltmp+'<a href='javascript:paging('+j+');' target='_blank'>'+j+'</a>'      
+        	}
+			htmltmp=htmltmp+'<a href='javascript:paging('+count+');' target='_blank'>末页</a></td><td colspan='1' ></td></tr>';
+
+
+
+
+
+
+
+
+
+
+
+
+
+					if(count!=-1){
+			 $.ajax({
+			        type: 'Post',
+			        url: 'GetAllUsers?CurrentPage=1&EachPage=10',
+			        dataType: 'json',
+			        data: {		            
+			        },
+			        success: function (data) {
+			        	if(data=='error'){
+			        		alert('帐号或密码错误!');
+			        	}else{
+			        		alert('==data=='+data);
+			        	}	        	
+			        },
+			       error: function( msg ) { 
+			    	   alert('修改人员信息失败'); 
+			       }
+			});	
+			htmltmp=htmltmp+'<tr class='warning'><td colspan='1' ></td ><td colspan='3' align='center'><a href='javascript:paging(1);''+
+			'target='_blank'>首页</a>';
+			for(int j = 1; j<count+1 ; j++){ 
+				htmltmp=htmltmp+'<a href='javascript:paging('+j+');' target='_blank'>'+j+'</a>'      
+        	}
+			htmltmp=htmltmp+'<a href='javascript:paging('+count+');' target='_blank'>末页</a></td><td colspan='1' ></td></tr>';
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+//htmltmp=htmltmp+'<tr><td width='20%'>'+data[i].UserCode+'</td>'+
+                        		//'<td width='20%'>'+data[i].UserName+'</td><td width='20%'>'+data[i].Telephone+'</td>'+
+                        		//'<td width='20%'>'+data[i].Mobile+'</td><td width='20%'>'+data[i].Email+'</td>';
+		}
+
+
+
+
+
+
+
+
+
+
+CREATE TABLE `pg_user` (
+  `UserID` varchar(20) NOT NULL COMMENT '用户系统编码',
+  `UserCode` varchar(16) NOT NULL COMMENT '用户名',
+  `UserName` varchar(20) NOT NULL COMMENT '姓名',
+  `Password` varchar(50) NOT NULL COMMENT '密码',
+  `PasswordKey` varchar(50) DEFAULT NULL COMMENT '加解密密钥',
+  `PasswordIV` varchar(50) DEFAULT NULL COMMENT '加解密矢量',
+  `UserClass` int(11) NOT NULL COMMENT '用户类别（1，系统用户，2，员工）',
+  `Gender` int(11) NOT NULL COMMENT '性别:1,男，2,女',
+  `ISDN` varchar(20) DEFAULT NULL COMMENT '身份证号',
+  `Telephone` varchar(20) DEFAULT NULL COMMENT '电话',
+  `Mobile` varchar(20) DEFAULT NULL COMMENT '手机',
+  `Fax` varchar(20) DEFAULT NULL COMMENT '传真',
+  `Email` varchar(255) DEFAULT NULL COMMENT '电子邮件',
+  `Address` varchar(255) DEFAULT NULL COMMENT '家庭住址',
+  `Photo` longblob COMMENT '相片',
+  `Age` int(11) DEFAULT NULL COMMENT '年龄',
+  `Birthday` datetime DEFAULT NULL COMMENT '出生日期',
+  `Remark` varchar(255) DEFAULT NULL COMMENT '备注',
+  `Status` int(11) NOT NULL DEFAULT '1' COMMENT '用户状态(1,有效，0,禁用，-1,删除)',
+  `CreatedBy` varchar(20) NOT NULL DEFAULT 'SystemAdmin' COMMENT '创建人',
+  `CreatedDate` datetime NOT NULL COMMENT '创建时间',
+  `ModifiedBy` varchar(20) NOT NULL DEFAULT 'SystemAdmin' COMMENT '修改人',
+  `ModifiedDate` datetime NOT NULL COMMENT '修改时间',
+  PRIMARY KEY (`UserID`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COMMENT='用户表';
+
+PriceFeedback 价格反馈 AcceptOrder 接受订单  LaunchOrder 发起订单
+CREATE TABLE `pg_order` (
+  `OrderID` varchar(36) NOT NULL COMMENT '订单ID',
+  `OrderCode` varchar(36) NOT NULL COMMENT '订单编码',
+  `Status` int(11) NOT NULL DEFAULT '1' COMMENT '订单状态(-1,作废 0,提交材料 1,价格反馈 2,发起订单  3,接受订单 4,开始1 5,开始2 6,开始3)',
+  `Remark` varchar(1000) DEFAULT NULL COMMENT '销售备注',
+  `FlowRemark` varchar(1000) DEFAULT NULL COMMENT '流程备注',
+  `Price` varchar(255) DEFAULT NULL COMMENT '价格',
+  `CreatedBy` varchar(20) NOT NULL DEFAULT 'SystemAdmin' COMMENT '创建人',
+  `CreatedDate` datetime NOT NULL COMMENT '创建时间',
+  `ModifiedBy` varchar(20) NOT NULL DEFAULT 'SystemAdmin' COMMENT '修改人',
+  `ModifiedDate` datetime NOT NULL COMMENT '修改时间',
+  PRIMARY KEY (`OrderID`)
+)ENGINE=InnoDB DEFAULT CHARSET=utf8 COMMENT='订单表';
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

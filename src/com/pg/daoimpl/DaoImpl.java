@@ -192,15 +192,15 @@ public class DaoImpl
 			if(Model.equals("1")){
 				if(Type.equals("0")){
 					ps=conn.prepareStatement(
-							"select OrderID,Status,Remark,FlowRemark,Price,CreatedBy,CreatedDate,ModifiedBy,ModifiedDate"
+							"select OrderID,OrderCode,Status,Remark,FlowRemark,Price,CreatedBy,CreatedDate,ModifiedBy,ModifiedDate"
 							+ " from pg_order where Status!=-2 and Status <= 1 "+Condition+"  order by Status,ModifiedDate desc  limit ?, ?");
 				}else if(Type.equals("1")){
 					ps=conn.prepareStatement(
-							"select OrderID,Status,Remark,FlowRemark,Price,CreatedBy,CreatedDate,ModifiedBy,ModifiedDate"
+							"select OrderID,OrderCode,Status,Remark,FlowRemark,Price,CreatedBy,CreatedDate,ModifiedBy,ModifiedDate"
 							+ " from pg_order where Status > 1 and  Status < 100 "+Condition+"  order by Status,ModifiedDate desc  limit ?, ?");
 				}else if(Type.equals("2")){
 					ps=conn.prepareStatement(
-							"select OrderID,Status,Remark,FlowRemark,Price,CreatedBy,CreatedDate,ModifiedBy,ModifiedDate"
+							"select OrderID,OrderCode,Status,Remark,FlowRemark,Price,CreatedBy,CreatedDate,ModifiedBy,ModifiedDate"
 							+ " from pg_order where Status = 100 "+Condition+"  order by Status,ModifiedDate desc  limit ?, ?");
 				}				
 				int intcurrentPage = Integer.parseInt(CurrentPage);
@@ -214,15 +214,15 @@ public class DaoImpl
 			}else{
 				if(Type.equals("0")){
 					ps=conn.prepareStatement(
-							"select OrderID,Status,Remark,FlowRemark,Price,CreatedBy,CreatedDate,ModifiedBy,ModifiedDate"
+							"select OrderID,OrderCode,Status,Remark,FlowRemark,Price,CreatedBy,CreatedDate,ModifiedBy,ModifiedDate"
 							+ " from pg_order where Status!=-2 and Status <= 1 "+Condition+"  order by Status,ModifiedDate desc");
 				}else if(Type.equals("1")){
 					ps=conn.prepareStatement(
-							"select OrderID,Status,Remark,FlowRemark,Price,CreatedBy,CreatedDate,ModifiedBy,ModifiedDate"
+							"select OrderID,OrderCode,Status,Remark,FlowRemark,Price,CreatedBy,CreatedDate,ModifiedBy,ModifiedDate"
 							+ " from pg_order where Status > 1 and  Status < 100 "+Condition+"  order by Status,ModifiedDate desc");
 				}else if(Type.equals("2")){
 					ps=conn.prepareStatement(
-							"select OrderID,Status,Remark,FlowRemark,Price,CreatedBy,CreatedDate,ModifiedBy,ModifiedDate"
+							"select OrderID,OrderCode,Status,Remark,FlowRemark,Price,CreatedBy,CreatedDate,ModifiedBy,ModifiedDate"
 							+ " from pg_order where Status = 100 "+Condition+"  order by Status,ModifiedDate desc");
 				}	
 			}
@@ -237,6 +237,7 @@ public class DaoImpl
 		    		rs.next();
 		    		porder = new Pg_order();
 		    		porder.setOrderID(rs.getString("OrderID"));
+		    		porder.setOrderCode(rs.getString("OrderCode"));
 		    		porder.setStatus(rs.getString("Status"));
 		    		porder.setRemark(rs.getString("Remark"));
 		    		porder.setFlowRemark(rs.getString("FlowRemark"));

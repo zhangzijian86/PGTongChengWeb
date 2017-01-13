@@ -59,6 +59,15 @@
     <servlet-name>GetAllOrder</servlet-name>
     <servlet-class>com.pg.servlet.GetAllOrder</servlet-class>
   </servlet>    
+  
+  <servlet>
+    <description>This is the description of my J2EE component</description>
+    <display-name>This is the display name of my J2EE component</display-name>
+    <servlet-name>GetHomeInfo</servlet-name>
+    <servlet-class>com.pg.servlet.GetHomeInfo</servlet-class>
+  </servlet>   
+  
+  
 
   <servlet-mapping>
     <servlet-name>Login</servlet-name>
@@ -98,6 +107,11 @@
  <servlet-mapping>
     <servlet-name>GetAllOrder</servlet-name>
     <url-pattern>/GetAllOrder</url-pattern>
+  </servlet-mapping>
+  
+  <servlet-mapping>
+    <servlet-name>GetHomeInfo</servlet-name>
+    <url-pattern>/GetHomeInfo</url-pattern>
   </servlet-mapping>
   
   

@@ -1,8 +1,9 @@
 package com.pg.bean;
 
 public class Pg_order {
-	private String OrderID;//订单编码
+	private String OrderID;//订单ID
 	private String Status;//订单状态(-2,删除 -1,作废 0,提交材料 1,价格反馈 2,接受订单 3,开始1 4,开始2 5,开始3 100,完成)
+	private String OrderCode;//订单编码	
 	private String Remark;//销售备注
 	private String FlowRemark;//流程备注
 	private String Price;//价格
@@ -21,6 +22,12 @@ public class Pg_order {
 	}
 	public void setStatus(String status) {
 		Status = status;
+	}
+	public String getOrderCode() {
+		return OrderCode;
+	}
+	public void setOrderCode(String orderCode) {
+		OrderCode = orderCode;
 	}
 	public String getRemark() {
 		return Remark;
