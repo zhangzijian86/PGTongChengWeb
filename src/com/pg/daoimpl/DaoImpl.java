@@ -8,6 +8,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.UUID;
 
+import com.pg.bean.Pg_order;
 import com.pg.bean.Pg_user;
 import com.pg.db.GetConn;
 
@@ -177,4 +178,79 @@ public class DaoImpl
 		getConn.closeconn(conn);
     	return i;
     }
+    
+    public List<Pg_order> GetAllOrder(String Model,String Type,String Condition,String CreatedBy,String CurrentPage,String EachPage) 
+	{
+    	int rows;
+		GetConn getConn=new GetConn();
+		ResultSet rs = null;
+		Connection conn=getConn.getConnection();
+		List<Pg_order> list=new ArrayList<Pg_order>();
+		Pg_order porder = null;
+		try {
+			PreparedStatement ps = null;
+			if(Model.equals("1")){
+				if(Type.equals("0")){
+					ps=conn.prepareStatement(
+							"select OrderID,Status,Remark,FlowRemark,Price,CreatedBy,CreatedDate,ModifiedBy,ModifiedDate"
+							+ " from pg_order where Status!=-2 and Status <= 1 "+Condition+"  order by Status,ModifiedDate desc  limit ?, ?");
+				}else if(Type.equals("1")){
+					ps=conn.prepareStatement(
+							"select OrderID,Status,Remark,FlowRemark,Price,CreatedBy,CreatedDate,ModifiedBy,ModifiedDate"
+							+ " from pg_order where Status > 1 and  Status < 100 "+Condition+"  order by Status,ModifiedDate desc  limit ?, ?");
+				}else if(Type.equals("2")){
+					ps=conn.prepareStatement(
+							"select OrderID,Status,Remark,FlowRemark,Price,CreatedBy,CreatedDate,ModifiedBy,ModifiedDate"
+							+ " from pg_order where Status = 100 "+Condition+"  order by Status,ModifiedDate desc  limit ?, ?");
+				}				
+				int intcurrentPage = Integer.parseInt(CurrentPage);
+				int inteachPage = Integer.parseInt(EachPage);
+				if(CurrentPage.equals("0")){
+					ps.setInt(1, 0);
+				}else{
+					ps.setInt(1, (intcurrentPage-1)*inteachPage);
+				}
+				ps.setInt(2, inteachPage);
+			}else{
+				if(Type.equals("0")){
+					ps=conn.prepareStatement(
+							"select OrderID,Status,Remark,FlowRemark,Price,CreatedBy,CreatedDate,ModifiedBy,ModifiedDate"
+							+ " from pg_order where Status!=-2 and Status <= 1 "+Condition+"  order by Status,ModifiedDate desc");
+				}else if(Type.equals("1")){
+					ps=conn.prepareStatement(
+							"select OrderID,Status,Remark,FlowRemark,Price,CreatedBy,CreatedDate,ModifiedBy,ModifiedDate"
+							+ " from pg_order where Status > 1 and  Status < 100 "+Condition+"  order by Status,ModifiedDate desc");
+				}else if(Type.equals("2")){
+					ps=conn.prepareStatement(
+							"select OrderID,Status,Remark,FlowRemark,Price,CreatedBy,CreatedDate,ModifiedBy,ModifiedDate"
+							+ " from pg_order where Status = 100 "+Condition+"  order by Status,ModifiedDate desc");
+				}	
+			}
+			System.out.println("=GetAllOrder=sql="+ps.toString());
+			rs=ps.executeQuery();
+			if(rs!=null){    		
+	    		rs.last();
+	    		rows = rs.getRow();
+	    		rs.beforeFirst();
+	    		for(int i=0;i<rows;i++)
+		    	{	    			
+		    		rs.next();
+		    		porder = new Pg_order();
+		    		porder.setOrderID(rs.getString("OrderID"));
+		    		porder.setStatus(rs.getString("Status"));
+		    		porder.setRemark(rs.getString("Remark"));
+		    		porder.setFlowRemark(rs.getString("FlowRemark"));
+		    		porder.setPrice(rs.getString("Price"));
+		    		porder.setCreatedBy(rs.getString("CreatedBy"));
+		    		porder.setCreatedDate(rs.getString("CreatedDate"));
+		    		porder.setModifiedBy(rs.getString("ModifiedBy"));
+		    		porder.setModifiedDate(rs.getString("ModifiedDate"));
+		    		list.add(porder);
+		    	}
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		return list;
+	}
 }
