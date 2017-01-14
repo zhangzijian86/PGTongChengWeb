@@ -440,7 +440,9 @@ window.onload = function getdata(){
 
 GetUserCode
 
-select REPLACE (UserCode,'成都','天府') from pg_user order by UserCode desc
+select REPLACE(UserCode,'yongqing','') as number  from pg_user order by UserCode desc
+
+select max(REPLACE(UserCode,'yongqing','')+0) as number  from pg_user order by UserCode desc;
 
 
 
