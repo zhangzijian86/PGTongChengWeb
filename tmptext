@@ -12,7 +12,7 @@ UserID,UserCode,UserName,Password,PasswordKey,PasswordIV,UserClass,Gender,
 ISDN,Telephone,Mobile,Fax,Email,Address,Photo,Age,Birthday,Remark,Status,CreatedBy,CreatedDate,ModifiedBy,ModifiedDate
 )
 values
-('1','zhangzijian','张子健','123456','','','1','1','110226','60962005','13581905786','123456','zhangzijian@163.com','北京市','','30','1986-11-25','root管理员','1','zhangzijian','2017-01-11','zhangzijian','2017-01-11');
+('1','yongqing','张子健','123456','','','1','1','110226','60962005','13581905786','123456','yongqing@163.com','北京市','','30','1986-11-25','root管理员','1','yongqing','2017-01-11','yongqing','2017-01-11');
 
 insert into pg_user
 (
@@ -20,7 +20,7 @@ UserID,UserCode,UserName,Password,PasswordKey,PasswordIV,UserClass,Gender,
 ISDN,Telephone,Mobile,Fax,Email,Address,Photo,Age,Birthday,Remark,Status,CreatedBy,CreatedDate,ModifiedBy,ModifiedDate
 )
 values
-('2','zhangzijian1','张子健1','123456','','','1','1','110226','60962005','13581905786','123456','zhangzijian@163.com','北京市','','30','1986-11-25','root管理员','1','zhangzijian','2017-01-11','zhangzijian','2017-01-11');
+('2','yongqing1','张子健1','123456','','','1','1','110226','60962005','13581905786','123456','yongqing@163.com','北京市','','30','1986-11-25','root管理员','1','yongqing','2017-01-11','yongqing','2017-01-11');
 
 insert into pg_user
 (
@@ -28,7 +28,7 @@ UserID,UserCode,UserName,Password,PasswordKey,PasswordIV,UserClass,Gender,
 ISDN,Telephone,Mobile,Fax,Email,Address,Photo,Age,Birthday,Remark,Status,CreatedBy,CreatedDate,ModifiedBy,ModifiedDate
 )
 values
-('3','zhangzijian2','张子健2','123456','','','1','1','110226','60962005','13581905786','123456','zhangzijian@163.com','北京市','','30','1986-11-25','root管理员','1','zhangzijian','2017-01-11','zhangzijian','2017-01-11');
+('3','yongqing2','张子健2','123456','','','1','1','110226','60962005','13581905786','123456','yongqing@163.com','北京市','','30','1986-11-25','root管理员','1','yongqing','2017-01-11','yongqing','2017-01-11');
 
 insert into pg_user
 (
@@ -36,48 +36,7 @@ UserID,UserCode,UserName,Password,PasswordKey,PasswordIV,UserClass,Gender,
 ISDN,Telephone,Mobile,Fax,Email,Address,Photo,Age,Birthday,Remark,Status,CreatedBy,CreatedDate,ModifiedBy,ModifiedDate
 )
 values
-('4','zhangzijian3','张子健3','123456','','','1','1','110226','60962005','13581905786','123456','zhangzijian@163.com','北京市','','30','1986-11-25','root管理员','1','zhangzijian','2017-01-11','zhangzijian','2017-01-11');
-
-
-insert into pg_user
-(
-UserID,UserCode,UserName,Password,PasswordKey,PasswordIV,UserClass,Gender,
-ISDN,Telephone,Mobile,Fax,Email,Address,Photo,Age,Birthday,Remark,Status,CreatedBy,CreatedDate,ModifiedBy,ModifiedDate
-)
-values
-('5','zhangzijian5','张子健5','123456','','','1','1','110226','60962005','13581905786','123456','zhangzijian@163.com','北京市','','30','1986-11-25','root管理员','1','zhangzijian','2017-01-11','zhangzijian','2017-01-11');
-
-insert into pg_user
-(
-UserID,UserCode,UserName,Password,PasswordKey,PasswordIV,UserClass,Gender,
-ISDN,Telephone,Mobile,Fax,Email,Address,Photo,Age,Birthday,Remark,Status,CreatedBy,CreatedDate,ModifiedBy,ModifiedDate
-)
-values
-('6','zhangzijian6','张子健6','123456','','','1','1','110226','60962005','13581905786','123456','zhangzijian@163.com','北京市','','30','1986-11-25','root管理员','1','zhangzijian','2017-01-11','zhangzijian','2017-01-11');
-
-insert into pg_user
-(
-UserID,UserCode,UserName,Password,PasswordKey,PasswordIV,UserClass,Gender,
-ISDN,Telephone,Mobile,Fax,Email,Address,Photo,Age,Birthday,Remark,Status,CreatedBy,CreatedDate,ModifiedBy,ModifiedDate
-)
-values
-('7','zhangzijian7','张子健7','123456','','','1','1','110226','60962005','13581905786','123456','zhangzijian@163.com','北京市','','30','1986-11-25','root管理员','1','zhangzijian','2017-01-11','zhangzijian','2017-01-11');
-
-insert into pg_user
-(
-UserID,UserCode,UserName,Password,PasswordKey,PasswordIV,UserClass,Gender,
-ISDN,Telephone,Mobile,Fax,Email,Address,Photo,Age,Birthday,Remark,Status,CreatedBy,CreatedDate,ModifiedBy,ModifiedDate
-)
-values
-('8','zhangzijian8','张子健8','123456','','','1','1','110226','60962005','13581905786','123456','zhangzijian@163.com','北京市','','30','1986-11-25','root管理员','1','zhangzijian','2017-01-11','zhangzijian','2017-01-11');
-
-insert into pg_user
-(
-UserID,UserCode,UserName,Password,PasswordKey,PasswordIV,UserClass,Gender,
-ISDN,Telephone,Mobile,Fax,Email,Address,Photo,Age,Birthday,Remark,Status,CreatedBy,CreatedDate,ModifiedBy,ModifiedDate
-)
-values
-('9','zhangzijian9','张子健9','123456','','','1','1','110226','60962005','13581905786','123456','zhangzijian@163.com','北京市','','30','1986-11-25','root管理员','1','zhangzijian','2017-01-11','zhangzijian','2017-01-11');
+('4','yongqing3','张子健3','123456','','','1','1','110226','60962005','13581905786','123456','yongqing@163.com','北京市','','30','1986-11-25','root管理员','1','yongqing','2017-01-11','yongqing','2017-01-11');
 
 
 insert into pg_user
@@ -86,21 +45,62 @@ UserID,UserCode,UserName,Password,PasswordKey,PasswordIV,UserClass,Gender,
 ISDN,Telephone,Mobile,Fax,Email,Address,Photo,Age,Birthday,Remark,Status,CreatedBy,CreatedDate,ModifiedBy,ModifiedDate
 )
 values
-('10','zhangzijian10','张子健10','123456','','','1','1','110226','60962005','13581905786','123456','zhangzijian@163.com','北京市','','30','1986-11-25','root管理员','1','zhangzijian','2017-01-11','zhangzijian','2017-01-11');
+('5','yongqing5','张子健5','123456','','','1','1','110226','60962005','13581905786','123456','yongqing@163.com','北京市','','30','1986-11-25','root管理员','1','yongqing','2017-01-11','yongqing','2017-01-11');
+
 insert into pg_user
 (
 UserID,UserCode,UserName,Password,PasswordKey,PasswordIV,UserClass,Gender,
 ISDN,Telephone,Mobile,Fax,Email,Address,Photo,Age,Birthday,Remark,Status,CreatedBy,CreatedDate,ModifiedBy,ModifiedDate
 )
 values
-('11','zhangzijian11','张子健11','123456','','','1','1','110226','60962005','13581905786','123456','zhangzijian@163.com','北京市','','30','1986-11-25','root管理员','1','zhangzijian','2017-01-11','zhangzijian','2017-01-11');
+('6','yongqing6','张子健6','123456','','','1','1','110226','60962005','13581905786','123456','yongqing@163.com','北京市','','30','1986-11-25','root管理员','1','yongqing','2017-01-11','yongqing','2017-01-11');
+
 insert into pg_user
 (
 UserID,UserCode,UserName,Password,PasswordKey,PasswordIV,UserClass,Gender,
 ISDN,Telephone,Mobile,Fax,Email,Address,Photo,Age,Birthday,Remark,Status,CreatedBy,CreatedDate,ModifiedBy,ModifiedDate
 )
 values
-('12','zhangzijian12','张子健12','123456','','','1','1','110226','60962005','13581905786','123456','zhangzijian@163.com','北京市','','30','1986-11-25','root管理员','1','zhangzijian','2017-01-11','zhangzijian','2017-01-11');
+('7','yongqing7','张子健7','123456','','','1','1','110226','60962005','13581905786','123456','yongqing@163.com','北京市','','30','1986-11-25','root管理员','1','yongqing','2017-01-11','yongqing','2017-01-11');
+
+insert into pg_user
+(
+UserID,UserCode,UserName,Password,PasswordKey,PasswordIV,UserClass,Gender,
+ISDN,Telephone,Mobile,Fax,Email,Address,Photo,Age,Birthday,Remark,Status,CreatedBy,CreatedDate,ModifiedBy,ModifiedDate
+)
+values
+('8','yongqing8','张子健8','123456','','','1','1','110226','60962005','13581905786','123456','yongqing@163.com','北京市','','30','1986-11-25','root管理员','1','yongqing','2017-01-11','yongqing','2017-01-11');
+
+insert into pg_user
+(
+UserID,UserCode,UserName,Password,PasswordKey,PasswordIV,UserClass,Gender,
+ISDN,Telephone,Mobile,Fax,Email,Address,Photo,Age,Birthday,Remark,Status,CreatedBy,CreatedDate,ModifiedBy,ModifiedDate
+)
+values
+('9','yongqing9','张子健9','123456','','','1','1','110226','60962005','13581905786','123456','yongqing@163.com','北京市','','30','1986-11-25','root管理员','1','yongqing','2017-01-11','yongqing','2017-01-11');
+
+
+insert into pg_user
+(
+UserID,UserCode,UserName,Password,PasswordKey,PasswordIV,UserClass,Gender,
+ISDN,Telephone,Mobile,Fax,Email,Address,Photo,Age,Birthday,Remark,Status,CreatedBy,CreatedDate,ModifiedBy,ModifiedDate
+)
+values
+('10','yongqing10','张子健10','123456','','','1','1','110226','60962005','13581905786','123456','yongqing@163.com','北京市','','30','1986-11-25','root管理员','1','yongqing','2017-01-11','yongqing','2017-01-11');
+insert into pg_user
+(
+UserID,UserCode,UserName,Password,PasswordKey,PasswordIV,UserClass,Gender,
+ISDN,Telephone,Mobile,Fax,Email,Address,Photo,Age,Birthday,Remark,Status,CreatedBy,CreatedDate,ModifiedBy,ModifiedDate
+)
+values
+('11','yongqing11','张子健11','123456','','','1','1','110226','60962005','13581905786','123456','yongqing@163.com','北京市','','30','1986-11-25','root管理员','1','yongqing','2017-01-11','yongqing','2017-01-11');
+insert into pg_user
+(
+UserID,UserCode,UserName,Password,PasswordKey,PasswordIV,UserClass,Gender,
+ISDN,Telephone,Mobile,Fax,Email,Address,Photo,Age,Birthday,Remark,Status,CreatedBy,CreatedDate,ModifiedBy,ModifiedDate
+)
+values
+('12','yongqing12','张子健12','123456','','','1','1','110226','60962005','13581905786','123456','yongqing@163.com','北京市','','30','1986-11-25','root管理员','1','yongqing','2017-01-11','yongqing','2017-01-11');
 
 
 insert into pg_order(OrderID,OrderCode,Status,Remark,FlowRemark,Price,CreatedBy,CreatedDate,ModifiedBy,ModifiedDate)values('1','11',-1,'11','a11','b11','zzj',now(),'zzj',now());
@@ -264,24 +264,183 @@ CREATE TABLE `pg_order` (
 )ENGINE=InnoDB DEFAULT CHARSET=utf8 COMMENT='订单表';
 
 
+	function getdata(){
+		 $.ajax({
+		        type: "Post",
+		        url: "GetOneUser?UserID="+,
+		        dataType: "html",
+		        data: {		            
+		        },
+		        success: function (data) {
+		        	if(data=="error"){
+		        		count = -1;
+		        	}else{
+		        	}	        	
+		        },
+		       error: function( msg ) { 
+		    	   alert("获取人员信息失败"); 
+		        }
+		});		
+	}
 
 
 
 
+		        		alert("=data[0].UserName=="+data[0].UserName);
+		        		alert("=value=="+document.getElementById("UserID").value);
+		        		document.getElementById("UserID").value = data[0].UserID;
+		        		document.getElementById("UserCode").value = data[0].UserCode;
+		        		document.getElementById("UserName").value = data[0].UserName;
+		        		document.getElementById("Password").value = data[0].Password;
+		        		if(data[0].Gender==1){
+		        			document.getElementById("Gender").value = "男";
+		        		}else{
+		        			document.getElementById("Gender").value = "女";
+		        		}
+		        		document.getElementById("Address").value = data[0].Address;
+		        		document.getElementById("ISDN").value = data[0].ISDN;
+		        		document.getElementById("Telephone").value = data[0].Telephone;
+		        		document.getElementById("Mobile").value = data[0].Mobile;
+		        		document.getElementById("Email").value = data[0].Email;
+
+UpdateUser
 
 
 
+		        		 UserID = data[0].UserID;
+		        	     UserCode = data[0].UserCode;
+		        	     UserName = data[0].UserName;
+		        	     Password = data[0].Password;
+		        	     Gender = data[0].Gender;
+		        	     Address = data[0].Address;
+		        	     ISDN = data[0].ISDN;
+		        	     Telephone = data[0].Telephone;
+		        	     Mobile = data[0].Mobile;
+		        	     Email = data[0].Email;
+		        	    setvalue()
+
+		document.getElementById("UserID").value = UserID;
+		document.getElementById("UserCode").value = UserCode;
+		document.getElementById("UserName").value = UserName;
+		document.getElementById("Password").value = Password;
+		if(Gender==1){
+			document.getElementById("Gender").value = "男";
+		}else{
+			document.getElementById("Gender").value = "女";
+		}
+		document.getElementById("Address").value = Address;
+		document.getElementById("ISDN").value = ISDN;
+		document.getElementById("Telephone").value = Telephone;
+		document.getElementById("Mobile").value = Mobile;
+		document.getElementById("Email").value = Email;
+
+
+    var UserIDtmp = document.getElementById("UserID");
+    var UserCodetmp = document.getElementById("UserCode");
+    var UserNametmp = document.getElementById("UserName");
+    var Passwordtmp = document.getElementById("Password");
+    var Gendertmp = document.getElementById("Gender");
+    var Addresstmp = document.getElementById("Address");
+    var ISDNtmp = document.getElementById("ISDN");
+    var Telephonetmp = document.getElementById("Telephone");
+    var Mobiletmp = document.getElementById("Mobile");
+    var Emailtmp = document.getElementById("Email");
+
+
+	 UserIDtmp.value = data[0].UserID;
+		        	     UserCodetmp.value = data[0].UserCode;
+		        	     UserNametmp.value = data[0].UserName;
+		        	     Passwordtmp.value = data[0].Password;
+		        	     Gendertmp.value = data[0].Gender;
+		        	     Addresstmp.value = data[0].Address;
+		        	     ISDNtmp.value = data[0].ISDN;
+		        	     Telephonetmp.value = data[0].Telephone;
+		        	     Mobiletmp.value = data[0].Mobile;
+		        	     Emailtmp.value = data[0].Email;
+
+
+function getdata(){
+		document.getElementById("UserID").value = UserID;
+		document.getElementById("UserCode").value = UserCode;
+		document.getElementById("UserName").value = UserName;
+		document.getElementById("Password").value = Password;
+		if(Gender==1){
+			document.getElementById("Gender").value = "男";
+		}else{
+			document.getElementById("Gender").value = "女";
+		}
+		document.getElementById("Address").value = Address;
+		document.getElementById("ISDN").value = ISDN;
+		document.getElementById("Telephone").value = Telephone;
+		document.getElementById("Mobile").value = Mobile;
+		document.getElementById("Email").value = Email;
+	}
+
+
+document.ready = function getdata(){
+		alert("=====1===");
+		var url = document.URL;
+		var tmpUserID = url.split('?')[1];  
+		var UserID = tmpUserID.split("=")[1];  
+		 $.ajax({
+		        type: "Post",
+		        url: "GetOneUser?UserID="+UserID,
+		        dataType: "json",
+		        data: {		            
+		        },
+		        success: function (data) {
+		        	if(data=="error"){		        	
+		        	}else{
+		        	}	        	
+		        },
+		       error: function( msg ) { 
+		    	   alert("获取人员信息失败"); 
+		        }
+		});		
+	}	
+
+
+window.onload = function getdata(){
+		alert("=====1===");
+		var url = document.URL;
+		var tmpUserID = url.split('?')[1];  
+		var UserID = tmpUserID.split("=")[1];  
+		 $.ajax({
+		        type: "Post",
+		        url: "GetOneUser?UserID="+UserID,
+		        dataType: "json",
+		        data: {		            
+		        },
+		        success: function (data) {
+		        	if(data=="error"){		        	
+		        	}else{
+		        	}	        	
+		        },
+		       error: function( msg ) { 
+		    	   alert("获取人员信息失败"); 
+		        }
+		});		
+	}	
+
+
+		        	     " UserCode = ?,";
+		        	     " UserName = ?,";
+		        	     " Password = ?,";
+		        	     " Gender = ?,";
+		        	     " Address = ?,";
+		        	     " ISDN = ?,";
+		        	     " Telephone = ?,";
+		        	     " Mobile = ?,";
+		        	     " Email = ?,";
 
 
 
+ where UserID='1'
+ where UserID = '2'
 
+GetUserCode
 
-
-
-
-
-
-
+select REPLACE (UserCode,'成都','天府') from pg_user order by UserCode desc
 
 
 
