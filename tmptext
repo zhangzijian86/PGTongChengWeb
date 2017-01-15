@@ -451,7 +451,27 @@ http://127.0.0.1:8080/WebRoot/LaunchOrder?OrderCode=zzj201701113&CreatedBy=yongq
 http://127.0.0.1:8080/WebRoot/GetAllOrder?Model=0&Type=0&Condition=&CreatedBy=zzj&CurrentPage=0&EachPage=10
 
 
-
+	function confirm(id) {
+		$.ajax({
+			type : "Post",
+			url : "jpushPriceListResult.jsp?id=" + id,
+			dataType : "html",
+			data : {
+			//organiseUnitID: selorganiseUnitID,
+			//CharType: 'CockiptTrendChange'
+			},
+			success : function(data) {
+				if (data > 0) {
+					window.location.reload();
+				} else {
+					alert("删除失败请重试");
+				}
+			},
+			error : function(msg) {
+				alert("删除失败请重试");
+			}
+		});
+	}
 
 
 
