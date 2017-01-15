@@ -11,6 +11,7 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import Decoder.BASE64Encoder;
 
@@ -33,17 +34,23 @@ public class GetHomeInfo extends HttpServlet {
 		request.setCharacterEncoding("utf-8");
 		response.setCharacterEncoding("utf-8");
 	    PrintWriter out=response.getWriter();
-		Pg_homeinfo phomeinfo= new Pg_homeinfo();
-		phomeinfo.setImage(GetImageStr("/Image/homeImage/1.jpg"));
-		phomeinfo.setComponyName("XX公司");
-		phomeinfo.setVsrsionName("XX版本");
-		if(phomeinfo!=null){
-			List<Pg_homeinfo> list1=new ArrayList<Pg_homeinfo>();
-			Gson gson=new Gson();//利用google提供的gson将一个list集合写成json形式的字符串		
-			list1.add(phomeinfo);
-			String jsonstring=gson.toJson(list1);
-			out.write(jsonstring);
-		}
+		HttpSession session = request.getSession(); 
+		if(session==null||session.getAttribute("UserCode")==null)
+	    {
+			out.write("error");		
+	    }else{
+			Pg_homeinfo phomeinfo= new Pg_homeinfo();
+			phomeinfo.setImage(GetImageStr("/Image/homeImage/1.jpg"));
+			phomeinfo.setComponyName("XX公司");
+			phomeinfo.setVsrsionName("XX版本");
+			if(phomeinfo!=null){
+				List<Pg_homeinfo> list1=new ArrayList<Pg_homeinfo>();
+				Gson gson=new Gson();//利用google提供的gson将一个list集合写成json形式的字符串		
+				list1.add(phomeinfo);
+				String jsonstring=gson.toJson(list1);
+				out.write(jsonstring);
+			}
+	    }
 		out.flush();
 		out.close();
 	}

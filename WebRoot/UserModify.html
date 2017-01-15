@@ -23,17 +23,9 @@
                 <tbody>
                     <tr>
                         <td>
-                        	<label class="control-label" for="inputEmail">编码</label>
+                        	<label class="control-label" for="inputEmail">帐号</label>
 							<div class="controls">
 								<input class="input-xxlarge" type="text" name="UserCode" id="UserCode" size="10" readonly placeholder="编码"  value ="111" >
-							</div>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>
-                        	<label class="control-label" for="inputEmail">姓名</label>
-							<div class="controls">
-								<input class="input-xxlarge" type="text" name="UserName" id="UserName" size="10"  placeholder="姓名" value ="" >
 							</div>
                         </td>
                     </tr>
@@ -45,6 +37,14 @@
 							</div>
                         </td>
                     </tr>  
+                   <tr>
+                        <td>
+                        	<label class="control-label" for="inputEmail">姓名</label>
+							<div class="controls">
+								<input class="input-xxlarge" type="text" name="UserName" id="UserName" size="10"  placeholder="姓名" value ="" >
+							</div>
+                        </td>
+                    </tr>
                         	<tr>
 	                        <td>
 	                        	<label class="control-label" for="inputEmail">性别</label>
@@ -79,7 +79,7 @@
 	                        </td>
                     		</tr>   
                      		<tr>                    
-                    		<td>
+                    		<td>编码
                       		<label class="control-label" for="inputEmail">手机</label>
                             <div class="controls">
                                 <input class="input-xxlarge" name="Mobile"  id="Mobile"  type="text"  placeholder="手机" size="20"  ></input>
@@ -111,10 +111,10 @@
 	function getdata(){		
 		var url = document.URL;
 		var tmpUserID = url.split('?')[1];  
-		var UserID = tmpUserID.split("=")[1];  
+		var UserCode = tmpUserID.split("=")[1];  
 		 $.ajax({
 		        type: "Post",
-		        url: "GetOneUser?UserID="+UserID,
+		        url: "GetOneUser?UserCode="+UserCode,
 		        dataType: "json",
 		        data: {		            
 		        },

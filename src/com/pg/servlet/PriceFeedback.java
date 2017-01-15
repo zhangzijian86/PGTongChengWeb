@@ -9,6 +9,7 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import com.google.gson.Gson;
 import com.pg.bean.Pg_user;
@@ -32,6 +33,13 @@ public class PriceFeedback extends HttpServlet {
 		String Remark=request.getParameter("Remark");
 		String CreatedBy=request.getParameter("CreatedBy");
 		DaoImpl userDaoImpl=new DaoImpl();
+		HttpSession session = request.getSession(); 
+		if(session==null||session.getAttribute("UserCode")==null)
+	    {
+			out.write("error");		
+	    }else{
+	    	
+	    }
 //		int flag=userDaoImpl.PriceFeedback(OrderCode,CreatedBy);
 //		if(flag<0){
 //			out.write("error");		

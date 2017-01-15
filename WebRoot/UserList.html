@@ -25,7 +25,7 @@
                 <tbody id="tbody">
 				 <tr class="warning">
                         <td width="20%">
-                        	编码
+                        	帐号
                         </td >
                        <td width="20%">
                         	姓名
@@ -75,7 +75,7 @@
 	var count=-1;
 	function getdata(){
 		//alert("==url=="+url);		
-		htmltmp="<tr class='warning'><td width='20%'>编码</td >"+
+		htmltmp="<tr class='warning'><td width='20%'>帐号</td >"+
 		"<td width='20%'>姓名</td><td width='20%'>电话</td><td width='20%'>手机</td><td width='20%'>电子邮件</td></tr>";
 		 $.ajax({
 		        type: "Post",
@@ -109,7 +109,7 @@
 			        		alert("帐号或密码错误!");
 			        	}else{			        		
                         	for(var i=0;i<data.length;i++){  
-                        		htmltmp=htmltmp+"<tr><td width='20%'><a href='javascript:modify("+data[i].UserID+");' target='_blank'>"+data[i].UserCode+"</a></td>"+
+                        		htmltmp=htmltmp+"<tr><td width='20%'><a href='javascript:modify(\""+data[i].UserCode+"\");' target='_blank'>"+data[i].UserCode+"</a></td>"+
                         		"<td width='20%'>"+data[i].UserName+"</td><td width='20%'>"+data[i].Telephone+"</td>"+
                         		"<td width='20%'>"+data[i].Mobile+"</td><td width='20%'>"+data[i].Email+"</td>";		
                         	} 
@@ -120,7 +120,7 @@
 			        	}	        	
 			        },
 			       error: function( msg ) { 
-			    	   alert("修改人员信息失败"); 
+			    	   alert("获取人员信息失败"); 
 			       }
 			});				
 		}
@@ -161,8 +161,8 @@
 			}
 		});
 	}
-	function modify(userid) {			
-		window.open("UserModify.html?id=" + userid, "",	"height=700, width=800");
+	function modify(UserCode) {		
+		window.open("UserModify.html?userCode=" + UserCode, "",	"height=700, width=800");
 	}
 	function adduser(){
 		window.open("UserAdd.html", "",	"height=700, width=800");

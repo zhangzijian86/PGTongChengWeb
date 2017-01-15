@@ -10,6 +10,7 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import com.google.gson.Gson;
 import com.pg.bean.Pg_user;
@@ -36,23 +37,28 @@ public class UpdateUser extends HttpServlet {
 		//jsonStr = URLDecoder.decode(jsonStr,"utf-8");
 		System.out.println("====jsonStr===22==="+jsonStr);
 		Pg_user puser = null;
-		puser = gson.fromJson(jsonStr, Pg_user.class); 
-		if(puser!=null){
-			System.out.println("====jsonStr===33===");
-			DaoImpl userDaoImpl=new DaoImpl();
-			int flag=userDaoImpl.UpdateUser(puser);
-			if(flag<0){
-				System.out.println("====jsonStr===44===");
-				out.write("error");		
-			}else{
-				System.out.println("====jsonStr===55===");
-				out.write("ok");
-			}
-		}else{
-			System.out.println("====jsonStr===66===");
+		HttpSession session = request.getSession(); 
+		if(session==null||session.getAttribute("UserCode")==null)
+	    {
 			out.write("error");		
-		}
-		
+	    }else{
+			puser = gson.fromJson(jsonStr, Pg_user.class); 
+			if(puser!=null){
+				System.out.println("====jsonStr===33===");
+				DaoImpl userDaoImpl=new DaoImpl();
+				int flag=userDaoImpl.UpdateUser(puser);
+				if(flag<0){
+					System.out.println("====jsonStr===44===");
+					out.write("error");		
+				}else{
+					System.out.println("====jsonStr===55===");
+					out.write("ok");
+				}
+			}else{
+				System.out.println("====jsonStr===66===");
+				out.write("error");		
+			}
+	    }
 		out.flush();
 		out.close();
 	}

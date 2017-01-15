@@ -416,7 +416,7 @@ window.onload = function getdata(){
 		        	}else{
 		        	}	        	
 		        },
-		       error: function( msg ) { 
+		       error: function( msg ) {  
 		    	   alert("获取人员信息失败"); 
 		        }
 		});		
@@ -444,6 +444,11 @@ select REPLACE(UserCode,'yongqing','') as number  from pg_user order by UserCode
 
 select max(REPLACE(UserCode,'yongqing','')+0) as number  from pg_user order by UserCode desc;
 
+
+http://127.0.0.1:8080/WebRoot/Login?UserCode=yongqing&Password=123456
+http://127.0.0.1:8080/WebRoot/SubmittedMaterial?OrderCode=zzj201701113&Remark=121&CreatedBy=yongqing
+http://127.0.0.1:8080/WebRoot/LaunchOrder?OrderCode=zzj201701113&CreatedBy=yongqing
+http://127.0.0.1:8080/WebRoot/GetAllOrder?Model=0&Type=0&Condition=&CreatedBy=zzj&CurrentPage=0&EachPage=10
 
 
 

@@ -258,7 +258,7 @@ public class DaoImpl
 		return list;
 	}
     
-    public List<Pg_user> GetOneUser(String UserID) 
+    public List<Pg_user> GetOneUser(String UserCode) 
    	{
    		int rows;
    		GetConn getConn=new GetConn();
@@ -268,7 +268,7 @@ public class DaoImpl
    		Pg_user puser = null;
    		try {
    			PreparedStatement ps=conn.prepareStatement("select UserID,UserCode,UserName,Password,Gender,Address,ISDN,Telephone,Mobile,Email"
-   					+ " from pg_user where UserID ='"+UserID+"'");
+   					+ " from pg_user where UserCode ='"+UserCode+"'");
    			rs=ps.executeQuery();
    			if(rs!=null){    		
    	    		rs.last();
@@ -311,7 +311,7 @@ public class DaoImpl
 		        	     +" Telephone = ?,"
 		        	     +" Mobile = ?,"
 		        	     +" Email = ? "
-		        	     + "where UserID = ?"
+		        	     + "where UserCode = ?"
 		        	     );
 			ps.setString(1,puser.getUserCode());	
 			ps.setString(2,puser.getUserName());
@@ -322,7 +322,7 @@ public class DaoImpl
 			ps.setString(7,puser.getTelephone());
 			ps.setString(8,puser.getMobile());
 			ps.setString(9,puser.getEmail());
-			ps.setString(10,puser.getUserID());
+			ps.setString(10,puser.getUserCode());
 			System.out.println("=UpdateUser=sql="+ps.toString());
 			i=ps.executeUpdate();
 		} catch (SQLException e) {
