@@ -474,4 +474,135 @@ http://127.0.0.1:8080/WebRoot/GetAllOrder?Model=0&Type=0&Condition=&CreatedBy=zz
 	}
 
 
+GetAllOrders
+
+
+select OrderID,OrderCode,pg_order.Status,pg_order.Remark,FlowRemark,Price,pg_order.CreatedBy,pg_order.CreatedDate,pg_order.ModifiedBy,pg_order.ModifiedDate,pg_user.username from pg_order left join pg_user on pg_order.CreatedBy = pg_user.usercode
+
+http://127.0.0.1:8080//WebRoot/SubmittedMaterial?OrderCode=yongqing2017115145835&Remark=订单信息: 宽度: 长度: 厚度: 袋型: 未选择印模: 未选择复合层数: 未选择一层复膜:&CreatedBy=yongqing
+
+
+
+<a href='javascript:modify(\""+data[i].UserCode+"\");' target='_blank'>
+
+
+
+                        	for(var i=0;i<data.length;i++){  
+                        		htmltmp=htmltmp+"<tr><td width='15%'>"+data[i].OrderCode+"</td>"；
+                        		if(data[i].Status==1){
+                        			htmltmp=htmltmp+"<tr><td width='15%'>咨询价格</td>"；
+                        		}else if(data[i].Status==2){
+                        			htmltmp=htmltmp+"<tr><td width='15%'>价格反馈</td>"；
+                        		}else if(data[i].Status==2){
+                        			htmltmp=htmltmp+"<tr><td width='15%'>提交订单</td>"；
+                        		}else if(data[i].Status==3){
+                        			htmltmp=htmltmp+"<tr><td width='15%'>已接受</td>"；
+                        		}else if(data[i].Status==4){
+                        			htmltmp=htmltmp+"<tr><td width='15%'>正在制版</td>"；
+                        		}else if(data[i].Status==5){
+                        			htmltmp=htmltmp+"<tr><td width='15%'>正在印刷</td>"；
+                        		}else if(data[i].Status==6){
+                        			htmltmp=htmltmp+"<tr><td width='15%'>正在复合</td>"；
+                        		}else if(data[i].Status==7){
+                        			htmltmp=htmltmp+"<tr><td width='15%'>正在出货</td>"；
+                        		}else if(data[i].Status==100){
+                        			htmltmp=htmltmp+"<tr><td width='15%'>完成</td>"；
+                        		}                        		
+                        		htmltmp=htmltmp+"<td width='15%'>"+data[i].Remark+"</td><td width='15%'>"+data[i].FlowRemark+"</td>"+
+                        		"<td width='15%'>"+data[i].Price+"</td><td width='15%'>"+data[i].username+"</td>"+
+                        		"<td width='20%'><a href='javascript:modify(\""+data[i].OrderCode+"\");' target='_blank'>"+删除+"</a></td>";		
+                        	} 
+
+
+
+
+function init(currentPage) {
+		if(count!=-1){
+			 $.ajax({
+			        type: "Post",
+			        url: "GetAllOrders?CurrentPage="+currentPage+"&EachPage=10",
+			        dataType: "json",
+			        data: {		            
+			        },
+			        success: function (data) {
+			        	if(data=="error"){
+			        		alert("帐号或密码错误!");
+			        	}else{			       		
+			     	  		 //0,提交材料 1,价格反馈 2,提交订单 3,已接受 4,正在制版 5,正在印刷 6,正在复合 7,正在出货 100,完成)
+                        	for(var i=0;i<data.length;i++){  
+                        		htmltmp=htmltmp+"<tr><td width='15%'>"+data[i].OrderCode+"</td>"；
+                        		if(data[i].Status==1){
+                        			htmltmp=htmltmp+"<tr><td width='15%'>咨询价格</td>"；
+                        		}else if(data[i].Status==2){
+                        			htmltmp=htmltmp+"<tr><td width='15%'>价格反馈</td>"；
+                        		}else if(data[i].Status==2){
+                        			htmltmp=htmltmp+"<tr><td width='15%'>提交订单</td>"；
+                        		}else if(data[i].Status==3){
+                        			htmltmp=htmltmp+"<tr><td width='15%'>已接受</td>"；
+                        		}else if(data[i].Status==4){
+                        			htmltmp=htmltmp+"<tr><td width='15%'>正在制版</td>"；
+                        		}else if(data[i].Status==5){
+                        			htmltmp=htmltmp+"<tr><td width='15%'>正在印刷</td>"；
+                        		}else if(data[i].Status==6){
+                        			htmltmp=htmltmp+"<tr><td width='15%'>正在复合</td>"；
+                        		}else if(data[i].Status==7){
+                        			htmltmp=htmltmp+"<tr><td width='15%'>正在出货</td>"；
+                        		}else if(data[i].Status==100){
+                        			htmltmp=htmltmp+"<tr><td width='15%'>完成</td>"；
+                        		}                        		
+                        		htmltmp=htmltmp+"<td width='15%'>"+data[i].Remark+"</td><td width='15%'>"+data[i].FlowRemark+"</td>"+
+                        		"<td width='15%'>"+data[i].Price+"</td><td width='15%'>"+data[i].username+"</td>"+
+                        		"<td width='20%'><a href='javascript:modify(\""+data[i].OrderCode+"\");' target='_blank'>"+删除+"</a></td>";		
+                        	} 
+                          end();
+			        	}	        	
+			        },
+			       error: function( msg ) { 
+			    	   alert("获取人员信息失败"); 
+			       }
+			});				
+		}
+	}
+	function end(){
+		htmltmp=htmltmp+"<tr class='warning'><td colspan='1' ></td ><td colspan='3' align='center'><a href='javascript:paging(1);'"+
+		"target='_blank'>首页&nbsp</a>";
+		var sum = count*1+1;
+		for(var j = 1; j<sum; j++){ 
+			htmltmp=htmltmp+"<a href='javascript:paging("+j+");' target='_blank'>"+j+"</a>"      
+        }
+		htmltmp=htmltmp+"<a href='javascript:paging("+count+");' target='_blank'>&nbsp末页</a></td><td colspan='1' ></td></tr>";
+		document.getElementById('tbody').innerHTML=htmltmp;
+	}
+	function paging(currentPage) {
+		htmltmp="<tr class='warning'><td width='20%'>编码</td >"+
+		"<td width='20%'>姓名</td><td width='20%'>电话</td><td width='20%'>手机</td><td width='20%'>电子邮件</td></tr>";
+		init(currentPage)
+	}
+	function confirm(phonenumber) {
+		$.ajax({
+			type : "Post",
+			url : "jpushUserListResult.jsp?phonenumber=" + phonenumber,
+			dataType : "html",
+			data : {
+			//organiseUnitID: selorganiseUnitID,
+			//CharType: 'CockiptTrendChange'
+			},
+			success : function(data) {
+				if (data > 0) {
+					window.location.reload();
+				} else {
+					alert("审核失败请重试");
+				}
+			},
+			error : function(msg) {
+				alert("审核失败请重试");
+			}
+		});
+	}
+	function modify(UserCode) {		
+		window.open("UserModify.html?userCode=" + UserCode, "",	"height=700, width=800");
+	}
+	function user(){
+		window.location.href="UserList.html"
+	}
 

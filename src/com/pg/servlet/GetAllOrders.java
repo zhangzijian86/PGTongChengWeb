@@ -12,11 +12,12 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import com.google.gson.Gson;
+import com.pg.bean.Pg_order;
 import com.pg.bean.Pg_user;
 import com.pg.daoimpl.DaoImpl;
 
 @SuppressWarnings("serial")
-public class SubmittedMaterial extends HttpServlet {
+public class GetAllOrders extends HttpServlet {
 	
 	public void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
@@ -29,17 +30,25 @@ public class SubmittedMaterial extends HttpServlet {
 		request.setCharacterEncoding("utf-8");
 		response.setCharacterEncoding("utf-8");
 	    PrintWriter out=response.getWriter();
-		String OrderCode=request.getParameter("OrderCode");
-		String Remark=request.getParameter("Remark");
-		Remark = new String(Remark.getBytes("ISO-8859-1"), "UTF-8");
-		String CreatedBy=request.getParameter("CreatedBy");
+		String CurrentPage=request.getParameter("CurrentPage");
+		String EachPage=request.getParameter("EachPage");
+		System.out.println("====doPost=============CurrentPage======"+CurrentPage);
+		System.out.println("====doPost=============EachPage======"+EachPage);
 		DaoImpl userDaoImpl=new DaoImpl();
-		int flag=userDaoImpl.SubmittedMaterial(OrderCode,Remark,CreatedBy);
-		if(flag<0){
-			out.write("error");		
-		}else{
-			out.write("ok");
-		}
+		List<Pg_order> list=userDaoImpl.GetAllOrders(CurrentPage,EachPage);
+		HttpSession session = request.getSession(); 
+		if(session==null||session.getAttribute("UserCode")==null)
+	    {
+			out.write("error");
+	    }else{
+	    	if(list!=null&&list.size()>0){			
+				Gson gson=new Gson();//利用google提供的gson将一个list集合写成json形式的字符串		
+				String jsonstring=gson.toJson(list);
+				out.write(jsonstring);
+			}else{
+				out.write("error");
+			}
+	    }
 		out.flush();
 		out.close();
 	}

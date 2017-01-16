@@ -31,19 +31,13 @@ public class LaunchOrder extends HttpServlet {
 	    PrintWriter out=response.getWriter();
 		String OrderCode=request.getParameter("OrderCode");
 		String CreatedBy=request.getParameter("CreatedBy");
-		HttpSession session = request.getSession(); 
-		if(session==null||session.getAttribute("UserCode")==null)
-	    {
+		DaoImpl userDaoImpl=new DaoImpl();
+		int flag=userDaoImpl.LaunchOrder(OrderCode,CreatedBy);
+		if(flag<0){
 			out.write("error");		
-	    }else{
-			DaoImpl userDaoImpl=new DaoImpl();
-			int flag=userDaoImpl.LaunchOrder(OrderCode,CreatedBy);
-			if(flag<0){
-				out.write("error");		
-			}else{
-				out.write("ok");
-			}
-	    }
+		}else{
+			out.write("ok");
+		}	   
 		out.flush();
 		out.close();
 	}

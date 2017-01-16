@@ -150,7 +150,7 @@ public class DaoImpl
 			ps.setString(3,Remark);			
 			ps.setString(4,CreatedBy);	
 			ps.setString(5,CreatedBy);
-			System.out.println("=addOnePrice=sql="+ps.toString());
+			System.out.println("=SubmittedMaterial=sql="+ps.toString());
 			i=ps.executeUpdate();
 		} catch (SQLException e) {
 			e.printStackTrace();
@@ -401,4 +401,58 @@ public class DaoImpl
 		getConn.closeconn(conn);
     	return i;
     }
+    
+    public List<Pg_order> GetAllOrders(String currentPage,String eachPage) 
+   	{
+   		int rows;
+   		GetConn getConn=new GetConn();
+   		ResultSet rs = null;
+   		Connection conn=getConn.getConnection();
+   		List<Pg_order> list=new ArrayList<Pg_order>();
+   		Pg_order porder = null;
+   		try {
+   			PreparedStatement ps=conn.prepareStatement(
+   					"select OrderID,OrderCode,pg_order.Status,pg_order.Remark,FlowRemark,"
+   					+ "Price,pg_order.CreatedBy,pg_order.CreatedDate,pg_order.ModifiedBy,"
+   					+ "pg_order.ModifiedDate,pg_user.username "
+   					+ "from pg_order "
+   					+ "left join pg_user on pg_order.CreatedBy = pg_user.usercode "
+   					+ "order by pg_order.Status ,ModifiedDate desc limit ?, ?");
+   			int intcurrentPage = Integer.parseInt(currentPage);
+   			int inteachPage = Integer.parseInt(eachPage);
+   			if(currentPage.equals("0")){
+   				ps.setInt(1, 0);
+   			}else{
+   				ps.setInt(1, (intcurrentPage-1)*inteachPage);
+   			}
+   			ps.setInt(2, inteachPage);
+   			System.out.println("=GetAllOrders=sql="+ps.toString());
+   			rs=ps.executeQuery();
+   			if(rs!=null){    		
+   	    		rs.last();
+   	    		rows = rs.getRow();
+   	    		rs.beforeFirst();
+   	    		for(int i=0;i<rows;i++)
+   		    	{	    			
+   		    		rs.next();
+   		    		porder = new Pg_order();
+   		    		porder.setOrderID(rs.getString("OrderID"));
+   		    		porder.setOrderCode(rs.getString("OrderCode"));
+   		    		porder.setStatus(rs.getString("Status"));
+   		    		porder.setRemark(rs.getString("Remark"));
+   		    		porder.setFlowRemark(rs.getString("FlowRemark"));
+   		    		porder.setPrice(rs.getString("Price"));
+		    		porder.setCreatedBy(rs.getString("CreatedBy"));
+		    		porder.setCreatedDate(rs.getString("CreatedDate"));
+		    		porder.setModifiedBy(rs.getString("ModifiedBy"));
+		    		porder.setModifiedDate(rs.getString("ModifiedDate"));
+		    		porder.setUserName(rs.getString("UserName"));
+   		    		list.add(porder);
+   		    	}
+   			}
+   		} catch (SQLException e) {
+   			e.printStackTrace();
+   		}
+   		return list;
+   	}
 }
