@@ -505,4 +505,23 @@ public class DaoImpl
 		getConn.closeconn(conn);
     	return i;
     }
+    
+    public int DeleteOrderPhone(Pg_order puser){
+    	GetConn getConn=new GetConn();
+		int i = 0;
+		Connection conn=getConn.getConnection();
+		try {
+			PreparedStatement ps=conn.prepareStatement("update pg_order "
+						 + "set Status = -1 "
+		        	     + "where OrderCode = ?"
+		        	     );
+			ps.setString(1,puser.getOrderCode());	
+			System.out.println("=DeleteOrder=sql="+ps.toString());
+			i=ps.executeUpdate();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		getConn.closeconn(conn);
+    	return i;
+    }
 }
