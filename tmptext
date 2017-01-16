@@ -1,4 +1,11 @@
- <tr class='warning'><td width='20%'>编码</td ><td width='20%'>姓名</td><td width='20%'>电话</td><td width='20%'>传真</td><td width='20%'>电子邮件</td></tr>             
+=============
+ssh root@123.56.68.127
+scp /home/zzj/WebRoot.tar.gz root@123.56.68.127:/root/PGDailyRecycle/tomcat-6.0.44/webapps
+============= 
+
+
+
+<tr class='warning'><td width='20%'>编码</td ><td width='20%'>姓名</td><td width='20%'>电话</td><td width='20%'>传真</td><td width='20%'>电子邮件</td></tr>             
 
 
 <a href='javascript:modify();' target='_blank'></a>
