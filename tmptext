@@ -585,7 +585,7 @@ function init(currentPage) {
 		"<td width='20%'>姓名</td><td width='20%'>电话</td><td width='20%'>手机</td><td width='20%'>电子邮件</td></tr>";
 		init(currentPage)
 	}
-	function confirm(phonenumber) {
+	function confirm(phonenumber) { 
 		$.ajax({
 			type : "Post",
 			url : "jpushUserListResult.jsp?phonenumber=" + phonenumber,
@@ -612,4 +612,48 @@ function init(currentPage) {
 	function user(){
 		window.location.href="UserList.html"
 	}
+
+
+select OrderCode,pg_order.Status,pg_order.Remark,FlowRemark,Price,pg_user.username,OrderID
+from pg_order 
+left join pg_user on pg_order.CreatedBy = pg_user.usercode 
+where  pg_order.Status!=-1 
+order by pg_order.Status ,pg_order.ModifiedDate desc 
+
+
+
+<input class='input-xxlarge' type='text' id='UserCode' size='10' maxlength='10' value ='' >
+
+
+
+		 htmltmp=htmltmp+"<td width='13%'>"+
+                        			 "<input class='input-xxlarge' type='text' id='UserCode' size='10' maxlength='10' value ='' ></td>";
+
+DeleteOrder
+
+DoNextOrder
+
+
+
+<textarea  id='shuoming'  rows='3'></textarea>
+
+      string responseFromServer = "";
+
+        WebRequest request = WebRequest.Create("http://139.196.189.30:8000/WebApi/DataExchange/GetData/SeaBridge_OrganiseUnit_QueryList?dataKey=00-00-00-00&Syncdatetime=1970-01-01");
+        request.Credentials = CredentialCache.DefaultCredentials;
+        HttpWebResponse response = (HttpWebResponse)request.GetResponse();
+        System.IO.StreamReader reader = new System.IO.StreamReader(new System.IO.Compression.GZipStream(response.GetResponseStream(), System.IO.Compression.CompressionMode.Decompress), Encoding.UTF8);
+        responseFromServer = reader.ReadToEnd();
+        reader.Close();
+        response.Close();
+
+
+
+
+
+
+
+
+
+
 

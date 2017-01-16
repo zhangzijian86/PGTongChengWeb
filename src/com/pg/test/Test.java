@@ -8,13 +8,20 @@ import java.util.List;
 import java.util.Map;
 
 import org.apache.http.HttpEntity;
+import org.apache.http.HttpResponse;
+import org.apache.http.HttpStatus;
 import org.apache.http.NameValuePair;
+import org.apache.http.client.HttpClient;
 import org.apache.http.client.entity.UrlEncodedFormEntity;
 import org.apache.http.client.methods.CloseableHttpResponse;
+import org.apache.http.client.methods.HttpGet;
 import org.apache.http.client.methods.HttpPost;
 import org.apache.http.impl.client.CloseableHttpClient;
+import org.apache.http.impl.client.DefaultHttpClient;
 import org.apache.http.impl.client.HttpClients;
 import org.apache.http.message.BasicNameValuePair;
+import org.apache.http.protocol.HTTP;
+import org.apache.http.util.EntityUtils;
 
 import com.pg.daoimpl.DaoImpl;
 
@@ -25,8 +32,8 @@ public class Test {
 	
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
-		DaoImpl daoImpl=new DaoImpl();
-		daoImpl.login("zhangzijian", "123456");
+//		DaoImpl daoImpl=new DaoImpl();
+//		daoImpl.login("zhangzijian", "123456");
 //		 String postUrl="http://sms.jiangukj.com/SendSms.aspx";
 //		 Map<String,String> map = new HashMap<String,String>();
 //		 map.put("action","code");
@@ -37,6 +44,49 @@ public class Test {
 //		 map.put("codeid", "3907");
 //		 String aa = httpPost(postUrl, map);
 //		 System.out.println("=====Check===doPost====11===yanzhengma=11="+aa);
+//		ConnNet connNet=new ConnNet();
+//		List<NameValuePair> params=new ArrayList<NameValuePair>();
+//		params.add(new BasicNameValuePair("dataKey", "00-00-00-00"));//USER_MOBILE
+//		params.add(new BasicNameValuePair("Syncdatetime", "1970-01-01"));//USER_MOBILE
+//		String result = null;
+//		try {
+//			HttpEntity entity=new UrlEncodedFormEntity(params, HTTP.UTF_8);
+//			HttpPost httpPost=connNet.gethttPost("SeaBridge_OrganiseUnit_QueryList");
+//			httpPost.setEntity(entity);
+//			HttpClient client=new DefaultHttpClient();
+//			HttpResponse httpResponse=client.execute(httpPost);
+//			if (httpResponse.getStatusLine().getStatusCode()==HttpStatus.SC_OK) 
+//			{
+//				System.out.println("====com.pg.pg.tools.Operaton===========000=======");
+//			}
+//			else
+//			{
+//				System.out.println("====com.pg.pg.tools.Operaton===========111=======");
+//			}
+//		} catch (Exception e) {
+//			e.printStackTrace();
+//		} 
+		ConnNet connNet=new ConnNet();
+		//List<NameValuePair> params=new ArrayList<NameValuePair>();
+		String result = null;
+		try {
+			//HttpEntity entity=new UrlEncodedFormEntity(params, HTTP.UTF_8);
+			HttpGet httpget=connNet.gethttGet();
+			//httpPost.setEntity(entity);
+			HttpClient client=new DefaultHttpClient();
+			HttpResponse httpResponse=client.execute(httpget);
+			if (httpResponse.getStatusLine().getStatusCode()==HttpStatus.SC_OK) 
+			{
+				result = EntityUtils.toString(httpResponse.getEntity(), "utf-8");
+				System.out.println("====com.pg.pg.tools.Operaton===========000======="+result);
+			}
+			else
+			{
+				System.out.println("====com.pg.pg.tools.Operaton===========111=======");
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		} 
 	}
 
 	 /**

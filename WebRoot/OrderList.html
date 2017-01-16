@@ -143,7 +143,7 @@
                           			htmltmp=htmltmp+"<td width='13%'>正在印刷中</td>";
                           		 }else if(data[i].Status=="6"){
                           			htmltmp=htmltmp+"<td width='13%'>正在复合中</td>";
-                          		 }else if(data[i].Status=="8"){
+                          		 }else if(data[i].Status=="7"){
                           			htmltmp=htmltmp+"<td width='13%'>正在出货中</td>";
                           		 }else if(data[i].Status=="100"){
                           			htmltmp=htmltmp+"<td width='13%'>订单已完成</td>";
@@ -154,17 +154,36 @@
                         		 }else{
                         			 htmltmp=htmltmp+"<td width='13%'>"+data[i].Remark+"</td>";
                         		 }
-                        		 if(data[i].FlowRemark==undefined){
-                        			 htmltmp=htmltmp+"<td width='13%'></td>";
-                        			 //alert("==="+data[i].Price);
-                        		 }else{
-                        			 htmltmp=htmltmp+"<td width='13%'>"+data[i].FlowRemark+"</td>";
-                        		 }
                         		 if(data[i].Price==undefined){
-                        			 htmltmp=htmltmp+"<td width='13%'></td>";
+                        			 if(data[i].Status=="0"){
+                        				 htmltmp=htmltmp+"<td width='13%'>"+
+                            			 "<input type='text' id='Price"+i+"' size='10' maxlength='10' value ='' ></td>";
+                        			 }else{
+                        				 htmltmp=htmltmp+"<td width='13%'>"+
+                            			 "<input type='text' id='Price"+i+"' size='10' readonly maxlength='10' value ='' ></td>";
+                        			 }                        			 
+                        		 }else{
+                        			 if(data[i].Status=="0"){
+                        				 htmltmp=htmltmp+"<td width='13%'>"+
+                            			 "<input type='text' id='Price"+i+"' size='10' maxlength='10' value ='"+data[i].Price+"' ></td>";
+                        			 }else{
+                        				 htmltmp=htmltmp+"<td width='13%'>"+
+                            			 "<input type='text' id='Price"+i+"' size='10' readonly maxlength='10' value ='"+data[i].Price+"' ></td>";
+                        			 }
+                        		 }
+                        		 if(data[i].FlowRemark==undefined){
+                        			 if(data[i].Status=="3"||data[i].Status=="4"||data[i].Status=="5"||data[i].Status=="6"||data[i].Status=="7"){
+                        				 htmltmp=htmltmp+"<td width='13%'><textarea  id='FlowRemark"+i+"' rows='2'></textarea></td>";
+                        			 }else{
+                        				 htmltmp=htmltmp+"<td width='13%'><textarea  id='FlowRemark"+i+"' readonly rows='2'></textarea></td>";
+                        			 }  
                         			 //alert("==="+data[i].Price);
                         		 }else{
-                        			 htmltmp=htmltmp+"<td width='13%'>"+data[i].Price+"</td>";
+                         			 if(data[i].Status=="3"||data[i].Status=="4"||data[i].Status=="5"||data[i].Status=="6"||data[i].Status=="7"){
+                        				 htmltmp=htmltmp+"<td width='13%'><textarea  id='FlowRemark"+i+"' rows='2'>"+data[i].FlowRemark+"</textarea></td>";
+                        			 }else{
+                        				 htmltmp=htmltmp+"<td width='13%'><textarea  id='FlowRemark"+i+"' readonly rows='2'>"+data[i].FlowRemark+"</textarea></td>";
+                        			 } 
                         		 }
                         		 if(data[i].UserName==undefined){
                         			 htmltmp=htmltmp+"<td width='13%'></td>";
@@ -173,21 +192,21 @@
                         			 htmltmp=htmltmp+"<td width='13%'>"+data[i].UserName+"</td>";
                         		 }
                         		 if(data[i].Status=="0"){
-                           			htmltmp=htmltmp+"<td width='11%'><a href='javascript:doNext(\""+data[i].OrderCode+"\",\""+data[i].Status+"\");' target='_blank'>"+"反馈价格"+"</a></td>";
+                           			htmltmp=htmltmp+"<td width='11%'><a href='javascript:doNext(\""+data[i].OrderCode+"\",\""+data[i].Status+"\","+i+");' target='_blank'>"+"反馈价格"+"</a></td>";
                            		 }else if(data[i].Status=="1"){
-                           			htmltmp=htmltmp+"<td width='11%'></td>";
+                           			htmltmp=htmltmp+"<td width='11%'>订单未提交</td>";
                            		 }else if(data[i].Status=="2"){
-                           			htmltmp=htmltmp+"<td width='11%'><a href='javascript:doNext(\""+data[i].OrderCode+"\",\""+data[i].Status+"\");' target='_blank'>"+"提交订单"+"</a></td>";
+                           			htmltmp=htmltmp+"<td width='11%'><a href='javascript:doNext(\""+data[i].OrderCode+"\",\""+data[i].Status+"\","+i+");' target='_blank'>"+"提交订单"+"</a></td>";
                            		 }else if(data[i].Status=="3"){
-                           			htmltmp=htmltmp+"<td width='11%'><a href='javascript:doNext(\""+data[i].OrderCode+"\",\""+data[i].Status+"\");' target='_blank'>"+"接受订单"+"</a></td>";
+                           			htmltmp=htmltmp+"<td width='11%'><a href='javascript:doNext(\""+data[i].OrderCode+"\",\""+data[i].Status+"\","+i+");' target='_blank'>"+"接受订单"+"</a></td>";
                            		 }else if(data[i].Status=="4"){
-                           			htmltmp=htmltmp+"<td width='11%'><a href='javascript:doNext(\""+data[i].OrderCode+"\",\""+data[i].Status+"\");' target='_blank'>"+"开始制版"+"</a></td>";
+                           			htmltmp=htmltmp+"<td width='11%'><a href='javascript:doNext(\""+data[i].OrderCode+"\",\""+data[i].Status+"\","+i+");' target='_blank'>"+"开始制版"+"</a></td>";
                            		 }else if(data[i].Status=="5"){
-                           			htmltmp=htmltmp+"<td width='11%'><a href='javascript:doNext(\""+data[i].OrderCode+"\",\""+data[i].Status+"\");' target='_blank'>"+"开始印刷"+"</a></td>";
+                           			htmltmp=htmltmp+"<td width='11%'><a href='javascript:doNext(\""+data[i].OrderCode+"\",\""+data[i].Status+"\","+i+");' target='_blank'>"+"开始印刷"+"</a></td>";
                            		 }else if(data[i].Status=="6"){
-                           			htmltmp=htmltmp+"<td width='11%'><a href='javascript:doNext(\""+data[i].OrderCode+"\",\""+data[i].Status+"\");' target='_blank'>"+"开始复合"+"</a></td>";
-                           		 }else if(data[i].Status=="8"){
-                           			htmltmp=htmltmp+"<td width='11%'><a href='javascript:doNext(\""+data[i].OrderCode+"\",\""+data[i].Status+"\");' target='_blank'>"+"开始出货"+"</a></td>";
+                           			htmltmp=htmltmp+"<td width='11%'><a href='javascript:doNext(\""+data[i].OrderCode+"\",\""+data[i].Status+"\","+i+");' target='_blank'>"+"开始复合"+"</a></td>";
+                           		 }else if(data[i].Status=="7"){
+                           			htmltmp=htmltmp+"<td width='11%'><a href='javascript:doNext(\""+data[i].OrderCode+"\",\""+data[i].Status+"\","+i+");' target='_blank'>"+"开始出货"+"</a></td>";
                            		 }else if(data[i].Status=="100"){
                            			htmltmp=htmltmp+"<td width='15%'>订单已完成</td>";
                            		 }
@@ -212,11 +231,50 @@
 		htmltmp=htmltmp+"<a href='javascript:paging("+count+");' target='_blank'>&nbsp末页</a></td><td colspan='1' ></td></tr>";
 		document.getElementById('tbody').innerHTML=htmltmp;
 	}	
-	function doNext(orderCode,currentStatus){
-		alert("=doNext=orderCode=="+orderCode+"==currentStatus=="+currentStatus);
+	function doNext(orderCode,currentStatus,number){
+		var Price = document.getElementById('Price'+number).value;
+		var FlowRemark = document.getElementById('FlowRemark'+number).value;
+		var jsonStr='{"OrderCode":"'+orderCode+
+		   '","Status":"'+currentStatus+
+		   '","Price":"'+Price+
+		   '","FlowRemark":"'+FlowRemark+
+	       '"}';	
+		$.ajax({
+			 type: "Post",
+			 url: "DoNextOrder?jsonStr="+jsonStr,
+			 dataType: "html",
+			 data: {		            
+			 },
+			 success: function (data) {
+			 	if(data=="error"){		        	
+			 	}else{
+			 		window.location.reload();
+			 	}	        	
+			 },
+			error: function( msg ) { 
+				   alert("修改人员信息失败"); 
+			 }
+		});	
 	}	
 	function deleteOrder(orderCode){
-		alert("=deleteOrder=orderCode=="+orderCode);
+		var jsonStr='{"OrderCode":"'+orderCode+
+	       '"}';	
+		$.ajax({
+			 type: "Post",
+			 url: "DeleteOrder?jsonStr="+jsonStr,
+			 dataType: "html",
+			 data: {		            
+			 },
+			 success: function (data) {
+			 	if(data=="error"){		        	
+			 	}else{
+			 		window.location.reload();
+			 	}	        	
+			 },
+			error: function( msg ) { 
+				   alert("修改人员信息失败"); 
+			 }
+		});	
 	}	
 	function user(){
 		window.location.href="UserList.html"

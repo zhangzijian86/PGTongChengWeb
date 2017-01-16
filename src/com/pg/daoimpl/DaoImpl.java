@@ -456,4 +456,53 @@ public class DaoImpl
    		}
    		return list;
    	}
+    
+    public int DeleteOrder(Pg_order puser){
+    	GetConn getConn=new GetConn();
+		int i = 0;
+		Connection conn=getConn.getConnection();
+		try {
+			PreparedStatement ps=conn.prepareStatement("update pg_order "
+						 + "set Status = -1 "
+		        	     + "where OrderCode = ?"
+		        	     );
+			ps.setString(1,puser.getOrderCode());	
+			System.out.println("=DeleteOrder=sql="+ps.toString());
+			i=ps.executeUpdate();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		getConn.closeconn(conn);
+    	return i;
+    }
+    
+    public int DoNextOrder(Pg_order porder){
+    	GetConn getConn=new GetConn();
+		int i = 0;
+		Connection conn=getConn.getConnection();
+		try {
+			int status = Integer.parseInt(porder.getStatus());
+			if(status!=7){
+				status = status+1;
+			}else{
+				status = 100;
+			}
+			PreparedStatement ps=conn.prepareStatement("update pg_order "
+						 + "set Status = ?, "
+						 + "Price = ? , "
+						 + "FlowRemark = ? "
+		        	     + "where OrderCode = ? "
+		        	     );
+			ps.setString(1,status+"");
+			ps.setString(2,porder.getPrice());
+			ps.setString(3,porder.getFlowRemark());
+			ps.setString(4,porder.getOrderCode());	
+			System.out.println("=DoNextOrder=sql="+ps.toString());
+			i=ps.executeUpdate();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		getConn.closeconn(conn);
+    	return i;
+    }
 }
