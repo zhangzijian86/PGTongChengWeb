@@ -34,16 +34,16 @@ public class GetHomeInfo extends HttpServlet {
 		request.setCharacterEncoding("utf-8");
 		response.setCharacterEncoding("utf-8");
 	    PrintWriter out=response.getWriter();
-		Pg_homeinfo phomeinfo= new Pg_homeinfo();
-		phomeinfo.setComponyName("XX公司");
-		phomeinfo.setVsrsionName("XX版本");
-		if(phomeinfo!=null){
-			List<Pg_homeinfo> list1=new ArrayList<Pg_homeinfo>();
+		DaoImpl userDaoImpl=new DaoImpl();
+		List<Pg_homeinfo> list = userDaoImpl.GetHomeInfo();
+		if(list!=null&&list.size()>=0){		
 			Gson gson=new Gson();//利用google提供的gson将一个list集合写成json形式的字符串		
-			list1.add(phomeinfo);
-			String jsonstring=gson.toJson(list1);
+			String jsonstring=gson.toJson(list);
 			out.write(jsonstring);
-		}	    
+		}else{
+			out.write("error");
+		}
+    
 		out.flush();
 		out.close();
 	}

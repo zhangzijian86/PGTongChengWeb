@@ -648,7 +648,25 @@ DoNextOrder
         response.Close();
 
 
+CREATE TABLE `pg_Info` (
+  `InfoID` varchar(36) NOT NULL COMMENT '信息ID',
+  `Status` varchar(36) NOT NULL COMMENT '信息状态 -1,删除 0,有效',
+  `ComponyName` int(255) NOT NULL DEFAULT '1' COMMENT '公司名称',
+  `VsrsionName` varchar(255) DEFAULT NULL COMMENT '版本名称',
+  `Vsrsionnumber` varchar(500) DEFAULT NULL COMMENT '版本号',
+  `Image` varchar(10000) DEFAULT NULL COMMENT '图片',
+  `UpdateLink` varchar(500) DEFAULT NULL COMMENT '下载链接',
+  `CreatedBy` varchar(20) NOT NULL DEFAULT 'SystemAdmin' COMMENT '创建人',
+  `CreatedDate` datetime NOT NULL COMMENT '创建时间',
+  `ModifiedBy` varchar(20) NOT NULL DEFAULT 'SystemAdmin' COMMENT '修改人',
+  `ModifiedDate` datetime NOT NULL COMMENT '修改时间',
+  PRIMARY KEY (`InfoID`)
+)ENGINE=InnoDB DEFAULT CHARSET=utf8 COMMENT='信息表';
 
+select InfoID,Status,ComponyName,VsrsionName,Vsrsionnumber,Image,UpdateLink,CreatedBy,CreatedDate,ModifiedBy,ModifiedDate from pg_Info where Status!=-1
+
+
+inster into (InfoID,Status,ComponyName,VsrsionName,Vsrsionnumber,Image,UpdateLink,CreatedBy,CreatedDate,ModifiedBy,ModifiedDate )values('yongqing',now(),'yongqing',now());
 
 
 

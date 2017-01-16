@@ -9,6 +9,7 @@ import java.util.List;
 import java.util.Random;
 import java.util.UUID;
 
+import com.pg.bean.Pg_homeinfo;
 import com.pg.bean.Pg_order;
 import com.pg.bean.Pg_user;
 import com.pg.db.GetConn;
@@ -222,11 +223,11 @@ public class DaoImpl
 				}else if(Type.equals("1")){
 					ps=conn.prepareStatement(
 							"select OrderID,OrderCode,Status,Remark,FlowRemark,Price,CreatedBy,CreatedDate,ModifiedBy,ModifiedDate"
-							+ " from pg_order where Status > 2 and  Status < 100 "+Condition+"  order by Status,ModifiedDate desc");
+							+ " from pg_order where Status > 2 and  Status < 100 and OrderCode like '%"+Condition+"%'   order by Status,ModifiedDate desc");
 				}else if(Type.equals("2")){
 					ps=conn.prepareStatement(
 							"select OrderID,OrderCode,Status,Remark,FlowRemark,Price,CreatedBy,CreatedDate,ModifiedBy,ModifiedDate"
-							+ " from pg_order where Status = 100 "+Condition+"  order by Status,ModifiedDate desc");
+							+ " from pg_order where Status = 100 and OrderCode like '%"+Condition+"%'   order by Status,ModifiedDate desc");
 				}	
 			}
 			System.out.println("=GetAllOrder=sql="+ps.toString());
@@ -524,4 +525,44 @@ public class DaoImpl
 		getConn.closeconn(conn);
     	return i;
     }
+    
+    public List<Pg_homeinfo> GetHomeInfo() 
+   	{
+   		int rows;
+   		GetConn getConn=new GetConn();
+   		ResultSet rs = null;
+   		Connection conn=getConn.getConnection();
+   		List<Pg_homeinfo> list=new ArrayList<Pg_homeinfo>();
+   		Pg_homeinfo phomeinfo = null;
+   		try {
+   			PreparedStatement ps=conn.prepareStatement("select InfoID,Status,ComponyName,VsrsionName,Vsrsionnumber,Image,"
+   					+ "UpdateLink,CreatedBy,CreatedDate,ModifiedBy,ModifiedDate from pg_Info where Status!=-1");
+   			rs=ps.executeQuery();
+   			if(rs!=null){    		
+   	    		rs.last();
+   	    		rows = rs.getRow();
+   	    		rs.beforeFirst();
+   	    		for(int i=0;i<rows;i++)
+   		    	{	    			
+   		    		rs.next();
+   		    		phomeinfo = new Pg_homeinfo();
+   		    		phomeinfo.setInfoID(rs.getString("InfoID"));
+   		    		phomeinfo.setStatus(rs.getString("Status"));
+   		    		phomeinfo.setComponyName(rs.getString("ComponyName"));
+   		    		phomeinfo.setVsrsionName(rs.getString("VsrsionName"));
+   		    		phomeinfo.setVsrsionnumber(rs.getString("Vsrsionnumber"));
+   		    		phomeinfo.setImage(rs.getString("Image"));
+   		    		phomeinfo.setUpdateLink(rs.getString("UpdateLink"));
+   		    		phomeinfo.setCreatedBy(rs.getString("CreatedBy"));
+   		    		phomeinfo.setCreatedDate(rs.getString("CreatedDate"));
+   		    		phomeinfo.setModifiedBy(rs.getString("ModifiedBy"));
+   		    		phomeinfo.setModifiedDate(rs.getString("ModifiedDate"));
+   		    		list.add(phomeinfo);
+   		    	}
+   			}
+   		} catch (SQLException e) {
+   			e.printStackTrace();
+   		}
+   		return list;
+   	}
 }

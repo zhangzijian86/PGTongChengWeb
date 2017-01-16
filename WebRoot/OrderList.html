@@ -196,17 +196,17 @@
                            		 }else if(data[i].Status=="1"){
                            			htmltmp=htmltmp+"<td width='11%'>订单未提交</td>";
                            		 }else if(data[i].Status=="2"){
-                           			htmltmp=htmltmp+"<td width='11%'><a href='javascript:doNext(\""+data[i].OrderCode+"\",\""+data[i].Status+"\","+i+");' target='_blank'>"+"提交订单"+"</a></td>";
-                           		 }else if(data[i].Status=="3"){
                            			htmltmp=htmltmp+"<td width='11%'><a href='javascript:doNext(\""+data[i].OrderCode+"\",\""+data[i].Status+"\","+i+");' target='_blank'>"+"接受订单"+"</a></td>";
-                           		 }else if(data[i].Status=="4"){
+                           		 }else if(data[i].Status=="3"){
                            			htmltmp=htmltmp+"<td width='11%'><a href='javascript:doNext(\""+data[i].OrderCode+"\",\""+data[i].Status+"\","+i+");' target='_blank'>"+"开始制版"+"</a></td>";
-                           		 }else if(data[i].Status=="5"){
+                           		 }else if(data[i].Status=="4"){
                            			htmltmp=htmltmp+"<td width='11%'><a href='javascript:doNext(\""+data[i].OrderCode+"\",\""+data[i].Status+"\","+i+");' target='_blank'>"+"开始印刷"+"</a></td>";
-                           		 }else if(data[i].Status=="6"){
+                           		 }else if(data[i].Status=="5"){
                            			htmltmp=htmltmp+"<td width='11%'><a href='javascript:doNext(\""+data[i].OrderCode+"\",\""+data[i].Status+"\","+i+");' target='_blank'>"+"开始复合"+"</a></td>";
-                           		 }else if(data[i].Status=="7"){
+                           		 }else if(data[i].Status=="6"){
                            			htmltmp=htmltmp+"<td width='11%'><a href='javascript:doNext(\""+data[i].OrderCode+"\",\""+data[i].Status+"\","+i+");' target='_blank'>"+"开始出货"+"</a></td>";
+                           		 }else if(data[i].Status=="7"){
+                           			htmltmp=htmltmp+"<td width='11%'><a href='javascript:doNext(\""+data[i].OrderCode+"\",\""+data[i].Status+"\","+i+");' target='_blank'>"+"完成订单"+"</a></td>";
                            		 }else if(data[i].Status=="100"){
                            			htmltmp=htmltmp+"<td width='15%'>订单已完成</td>";
                            		 }
