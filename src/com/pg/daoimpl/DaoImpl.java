@@ -101,7 +101,7 @@ public class DaoImpl
 		Pg_user puser = null;
 		try {
 			PreparedStatement ps=conn.prepareStatement("select UserID,UserCode,UserName,Telephone,Mobile,Email"
-					+ " from pg_user order by ModifiedDate desc  limit ?, ?");
+					+ " from pg_user where status !=-1 order by ModifiedDate desc  limit ?, ?");
 			int intcurrentPage = Integer.parseInt(currentPage);
 			int inteachPage = Integer.parseInt(eachPage);
 			if(currentPage.equals("0")){
@@ -197,15 +197,18 @@ public class DaoImpl
 				if(Type.equals("0")){
 					ps=conn.prepareStatement(
 							"select OrderID,OrderCode,Status,Remark,FlowRemark,Price,CreatedBy,CreatedDate,ModifiedBy,ModifiedDate"
-							+ " from pg_order where Status!=-1 and Status <= 2 "+Condition+"  order by Status,ModifiedDate desc  limit ?, ?");
+							+ " from pg_order where Status!=-1 and Status <= 2 "+Condition+" "
+							+ " and CreatedBy = '"+CreatedBy+"' order by Status,ModifiedDate desc  limit ?, ?");
 				}else if(Type.equals("1")){
 					ps=conn.prepareStatement(
 							"select OrderID,OrderCode,Status,Remark,FlowRemark,Price,CreatedBy,CreatedDate,ModifiedBy,ModifiedDate"
-							+ " from pg_order where Status > 2 and  Status < 100 "+Condition+"  order by Status,ModifiedDate desc  limit ?, ?");
+							+ " from pg_order where Status > 2 and  Status < 100 "+Condition+"  "
+							+ "  and CreatedBy = '"+CreatedBy+"' order by Status,ModifiedDate desc  limit ?, ?");
 				}else if(Type.equals("2")){
 					ps=conn.prepareStatement(
 							"select OrderID,OrderCode,Status,Remark,FlowRemark,Price,CreatedBy,CreatedDate,ModifiedBy,ModifiedDate"
-							+ " from pg_order where Status = 100 "+Condition+"  order by Status,ModifiedDate desc  limit ?, ?");
+							+ " from pg_order where Status = 100 "+Condition+"  "
+							+ " and CreatedBy = '"+CreatedBy+"' order by Status,ModifiedDate desc  limit ?, ?");
 				}				
 				int intcurrentPage = Integer.parseInt(CurrentPage);
 				int inteachPage = Integer.parseInt(EachPage);
@@ -219,15 +222,18 @@ public class DaoImpl
 				if(Type.equals("0")){
 					ps=conn.prepareStatement(
 							"select OrderID,OrderCode,Status,Remark,FlowRemark,Price,CreatedBy,CreatedDate,ModifiedBy,ModifiedDate"
-							+ " from pg_order where Status!=-1 and Status <= 2 "+Condition+"  order by Status,ModifiedDate desc");
+							+ " from pg_order where Status!=-1 and Status <= 2 "+Condition+"  "
+							+ " and CreatedBy = '"+CreatedBy+"' order by Status,ModifiedDate desc");
 				}else if(Type.equals("1")){
 					ps=conn.prepareStatement(
 							"select OrderID,OrderCode,Status,Remark,FlowRemark,Price,CreatedBy,CreatedDate,ModifiedBy,ModifiedDate"
-							+ " from pg_order where Status > 2 and  Status < 100 and OrderCode like '%"+Condition+"%'   order by Status,ModifiedDate desc");
+							+ " from pg_order where Status > 2 and  Status < 100 and OrderCode like '%"+Condition+"%'   "
+							+ " and CreatedBy = '"+CreatedBy+"' order by Status,ModifiedDate desc");
 				}else if(Type.equals("2")){
 					ps=conn.prepareStatement(
 							"select OrderID,OrderCode,Status,Remark,FlowRemark,Price,CreatedBy,CreatedDate,ModifiedBy,ModifiedDate"
-							+ " from pg_order where Status = 100 and OrderCode like '%"+Condition+"%'   order by Status,ModifiedDate desc");
+							+ " from pg_order where Status = 100 and OrderCode like '%"+Condition+"%'   "
+						    + " and CreatedBy = '"+CreatedBy+"' order by Status,ModifiedDate desc");
 				}	
 			}
 			System.out.println("=GetAllOrder=sql="+ps.toString());

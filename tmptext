@@ -119,13 +119,13 @@ insert into pg_order(OrderID,OrderCode,Status,Remark,FlowRemark,Price,CreatedBy,
 insert into pg_order(OrderID,OrderCode,Status,Remark,FlowRemark,Price,CreatedBy,CreatedDate,ModifiedBy,ModifiedDate)values('7','100',100,'100','a100','b100','zzj',now(),'zzj',now());
 
 
-insert into pg_order(OrderID,OrderCode,Status,Remark,FlowRemark,Price,CreatedBy,CreatedDate,ModifiedBy,ModifiedDate)values('21','11',-1,'11','a11','b11','zzj',now(),'zzj',now());
-insert into pg_order(OrderID,OrderCode,Status,Remark,FlowRemark,Price,CreatedBy,CreatedDate,ModifiedBy,ModifiedDate)values('22','22',1,'22','a22','b22','zzj',now(),'zzj',now());
-insert into pg_order(OrderID,OrderCode,Status,Remark,FlowRemark,Price,CreatedBy,CreatedDate,ModifiedBy,ModifiedDate)values('23','33',2,'33','a33','b33','zzj',now(),'zzj',now());
-insert into pg_order(OrderID,OrderCode,Status,Remark,FlowRemark,Price,CreatedBy,CreatedDate,ModifiedBy,ModifiedDate)values('24','a44',3,'44','a44','b44','zzj',now(),'zzj',now());
-insert into pg_order(OrderID,OrderCode,Status,Remark,FlowRemark,Price,CreatedBy,CreatedDate,ModifiedBy,ModifiedDate)values('25','a55',4,'55','a55','b55','zzj',now(),'zzj',now());
-insert into pg_order(OrderID,OrderCode,Status,Remark,FlowRemark,Price,CreatedBy,CreatedDate,ModifiedBy,ModifiedDate)values('26','66',5,'66','a66','b66','zzj',now(),'zzj',now());
-insert into pg_order(OrderID,OrderCode,Status,Remark,FlowRemark,Price,CreatedBy,CreatedDate,ModifiedBy,ModifiedDate)values('27','100',100,'100','a100','b100','zzj',now(),'zzj',now());
+insert into pg_order(OrderID,OrderCode,Status,Remark,FlowRemark,Price,CreatedBy,CreatedDate,ModifiedBy,ModifiedDate)values('21','11',-1,'11','a11','b11','yongqing',now(),'yongqing',now());
+insert into pg_order(OrderID,OrderCode,Status,Remark,FlowRemark,Price,CreatedBy,CreatedDate,ModifiedBy,ModifiedDate)values('22','22',1,'22','a22','b22','yongqing',now(),'yongqing',now());
+insert into pg_order(OrderID,OrderCode,Status,Remark,FlowRemark,Price,CreatedBy,CreatedDate,ModifiedBy,ModifiedDate)values('23','33',2,'33','a33','b33','yongqing',now(),'yongqing',now());
+insert into pg_order(OrderID,OrderCode,Status,Remark,FlowRemark,Price,CreatedBy,CreatedDate,ModifiedBy,ModifiedDate)values('24','a44',3,'44','a44','b44','yongqing',now(),'yongqing',now());
+insert into pg_order(OrderID,OrderCode,Status,Remark,FlowRemark,Price,CreatedBy,CreatedDate,ModifiedBy,ModifiedDate)values('25','a55',4,'55','a55','b55','yongqing',now(),'yongqing',now());
+insert into pg_order(OrderID,OrderCode,Status,Remark,FlowRemark,Price,CreatedBy,CreatedDate,ModifiedBy,ModifiedDate)values('26','66',5,'66','a66','b66','yongqing',now(),'yongqing',now());
+insert into pg_order(OrderID,OrderCode,Status,Remark,FlowRemark,Price,CreatedBy,CreatedDate,ModifiedBy,ModifiedDate)values('27','100',100,'100','a100','b100','yongqing',now(),'yongqing',now());
 
 
 
