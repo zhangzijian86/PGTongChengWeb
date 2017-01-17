@@ -24,34 +24,39 @@
                 </thead>
                 <tbody id="tbody">
 				 <tr class="warning">
-                        <td width="20%">
+                        <td width="17%">
                         	帐号
                         </td >
-                       <td width="20%">
+                       <td width="17%">
                         	姓名
                         </td>
-                        <td width="20%">
+                        <td width="17%">
                         	电话
                         </td> 
-                        <td width="20%">
+                        <td width="17%">
                         	手机
                         </td>
-                        <td width="20%">
+                        <td width="17%">
                         	电子邮件
+                        </td>
+                        <td width="15%">
+                        	删除
                         </td>
                     </tr>                  
                     <tr>
-                        <td width="20%">
+                        <td width="17%">
                         	<a href="javascript:modify();" target="_blank"></a>
                         </td >
-                        <td width="20%">                    	
+                        <td width="17%">                    	
                         </td>
-                        <td width="20%">                   
+                        <td width="17%">                   
                         </td>
-                        <td width="20%">                              	        
+                        <td width="17%">                              	        
                         </td>  
-                        <td width="20%">                              	        
+                        <td width="17%">                              	        
                         </td> 
+                        <td width="15%">                              	        
+                        </td>
                     </tr>
                     <tr class="warning">
                         <td colspan="1" >
@@ -75,8 +80,8 @@
 	var count=-1;
 	function getdata(){
 		//alert("==url=="+url);		
-		htmltmp="<tr class='warning'><td width='20%'>帐号</td >"+
-		"<td width='20%'>姓名</td><td width='20%'>电话</td><td width='20%'>手机</td><td width='20%'>电子邮件</td></tr>";
+		htmltmp="<tr class='warning'><td width='17%'>帐号</td >"+
+		"<td width='17%'>姓名</td><td width='17%'>电话</td><td width='17%'>手机</td><td width='17%'>电子邮件</td><td width='15%'>删除</td></tr>";
 		 $.ajax({
 		        type: "Post",
 		        url: "GetCount?Name=pg_user&Condition=where Status = 1",
@@ -109,9 +114,10 @@
 			        		alert("帐号或密码错误!");
 			        	}else{			        		
                         	for(var i=0;i<data.length;i++){  
-                        		htmltmp=htmltmp+"<tr><td width='20%'><a href='javascript:modify(\""+data[i].UserCode+"\");' target='_blank'>"+data[i].UserCode+"</a></td>"+
-                        		"<td width='20%'>"+data[i].UserName+"</td><td width='20%'>"+data[i].Telephone+"</td>"+
-                        		"<td width='20%'>"+data[i].Mobile+"</td><td width='20%'>"+data[i].Email+"</td></tr>";		
+                        		htmltmp=htmltmp+"<tr><td width='17%'><a href='javascript:modify(\""+data[i].UserCode+"\");' target='_blank'>"+data[i].UserCode+"</a></td>"+
+                        		"<td width='17%'>"+data[i].UserName+"</td><td width='17%'>"+data[i].Telephone+"</td>"+
+                        		"<td width='17%'>"+data[i].Mobile+"</td><td width='17%'>"+data[i].Email+"</td>"+
+                        		"<td width='11%'><a href='javascript:deleteuser(\""+data[i].UserCode+"\");' target='_blank'>"+"删除"+"</a></td></tr>";		
                         	} 
                           //$.each(data,function(i,v){      
                           //    alert("==data=="+v.UserID);
@@ -126,7 +132,7 @@
 		}
 	}
 	function end(){
-		htmltmp=htmltmp+"<tr class='warning'><td colspan='1' ></td ><td colspan='3' align='center'><a href='javascript:paging(1);'"+
+		htmltmp=htmltmp+"<tr class='warning'><td colspan='1' ></td ><td colspan='4' align='center'><a href='javascript:paging(1);'"+
 		"target='_blank'>首页&nbsp</a>";
 		var sum = count*1+1;
 		for(var j = 1; j<sum; j++){ 
@@ -136,8 +142,8 @@
 		document.getElementById('tbody').innerHTML=htmltmp;
 	}
 	function paging(currentPage) {
-		htmltmp="<tr class='warning'><td width='20%'>编码</td >"+
-		"<td width='20%'>姓名</td><td width='20%'>电话</td><td width='20%'>手机</td><td width='20%'>电子邮件</td></tr>";
+		htmltmp="<tr class='warning'><td width='17%'>编码</td >"+
+		"<td width='17%'>姓名</td><td width='17%'>电话</td><td width='17%'>手机</td><td width='17%'>电子邮件</td><td width='15%'>删除</td></tr>";
 		init(currentPage)
 	}
 	function confirm(phonenumber) {
@@ -161,6 +167,27 @@
 			}
 		});
 	}
+	function deleteOrder(userCode){
+		var jsonStr='{"UserCode":"'+userCode+
+	       '"}';	
+		$.ajax({
+			 type: "Post",
+			 url: "DeleteUser?jsonStr="+jsonStr,
+			 dataType: "html",
+			 data: {		            
+			 },
+			 success: function (data) {
+			 	if(data=="error"){		        	
+			 	}else{
+			 		window.location.reload();
+			 	}	        	
+			 },
+			error: function( msg ) { 
+				   alert("删除人员信息失败"); 
+			 }
+		});	
+	}	
+	
 	function modify(UserCode) {		
 		window.open("UserModify.html?userCode=" + UserCode, "",	"height=700, width=800");
 	}

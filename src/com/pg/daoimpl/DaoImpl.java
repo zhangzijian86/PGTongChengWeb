@@ -565,4 +565,23 @@ public class DaoImpl
    		}
    		return list;
    	}
+    
+    public int DeleteUser(Pg_user puser){
+    	GetConn getConn=new GetConn();
+		int i = 0;
+		Connection conn=getConn.getConnection();
+		try {
+			PreparedStatement ps=conn.prepareStatement("update pg_user "
+						 + "set Status = -1 "
+		        	     + "where UserCode = ?"
+		        	     );
+			ps.setString(1,puser.getUserCode());	
+			System.out.println("=DeleteOrder=sql="+ps.toString());
+			i=ps.executeUpdate();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		getConn.closeconn(conn);
+    	return i;
+    }
 }
