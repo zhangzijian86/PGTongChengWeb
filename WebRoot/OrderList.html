@@ -231,6 +231,12 @@
 		htmltmp=htmltmp+"<a href='javascript:paging("+count+");' target='_blank'>&nbsp末页</a></td><td colspan='1' ></td></tr>";
 		document.getElementById('tbody').innerHTML=htmltmp;
 	}	
+	function paging(currentPage) {
+		htmltmp="<tr class='warning'><td width='13%'>订单编码</td >"+
+		"<td width='13%'>订单状态</td><td width='13%'>销售备注</td><td width='13%'>价格</td>"+
+		"<td width='13%'>流程备注</td><td width='13%'>销售人员</td><td width='11%'>操作</td><td width='11%'>删除</td></tr>";
+		init(currentPage)
+	}
 	function doNext(orderCode,currentStatus,number){
 		var Price = document.getElementById('Price'+number).value;
 		var FlowRemark = document.getElementById('FlowRemark'+number).value;
