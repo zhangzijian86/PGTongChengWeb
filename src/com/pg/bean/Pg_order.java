@@ -12,7 +12,8 @@ public class Pg_order {
 	private String ModifiedBy;//修改人
 	private String ModifiedDate;//修改时间
 	private String UserName;
-		
+	private String OperationRemark;		
+	
 	public String getOrderID() {
 		return OrderID;
 	}
@@ -78,5 +79,11 @@ public class Pg_order {
 	}
 	public void setUserName(String userName) {
 		UserName = userName;
+	}
+	public String getOperationRemark() {
+		return OperationRemark;
+	}
+	public void setOperationRemark(String operationRemark) {
+		OperationRemark = operationRemark;
 	}
 }

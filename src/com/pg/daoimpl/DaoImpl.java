@@ -1,5 +1,6 @@
 package com.pg.daoimpl;
 
+import java.io.UnsupportedEncodingException;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -18,7 +19,7 @@ import com.pg.db.GetConn;
 
 public class DaoImpl 
 {
-	static final String COMPANYNAME = "yongqing"; 
+	static final String COMPANYNAME = "yq"; 
 	public Pg_user login(String UserCode,String Password) 
 	{
 		GetConn getConn=new GetConn();
@@ -435,7 +436,7 @@ public class DaoImpl
    		}
    		try {
    			PreparedStatement ps=conn.prepareStatement(
-   					"select OrderID,OrderCode,pg_order.Status,pg_order.Remark,FlowRemark,"
+   					"select OrderID,OrderCode,OperationRemark,pg_order.Status,pg_order.Remark,FlowRemark,"
    					+ "Price,pg_order.CreatedBy,pg_order.CreatedDate,pg_order.ModifiedBy,"
    					+ "pg_order.ModifiedDate,pg_user.username "
    					+ "from pg_order "
@@ -471,6 +472,7 @@ public class DaoImpl
 		    		porder.setModifiedBy(rs.getString("ModifiedBy"));
 		    		porder.setModifiedDate(rs.getString("ModifiedDate"));
 		    		porder.setUserName(rs.getString("UserName"));
+		    		porder.setOperationRemark(rs.getString("OperationRemark"));
    		    		list.add(porder);
    		    	}
    			}
@@ -502,7 +504,27 @@ public class DaoImpl
     public int DoNextOrder(Pg_order porder){
     	GetConn getConn=new GetConn();
 		int i = 0;
-		Connection conn=getConn.getConnection();
+		Connection conn=getConn.getConnection();		
+		String CreatedBy = porder.getCreatedBy();
+		String strTmp = "";
+		if(porder.getStatus().equals("0")){
+			strTmp = "反馈价格:"+CreatedBy+"<br>";
+		}else if(porder.getStatus().equals("2")){
+			strTmp = "接受订单:"+CreatedBy+"<br>";
+		}else if(porder.getStatus().equals("3")){
+			strTmp = "开始制版:"+CreatedBy+"<br>";
+		}else if(porder.getStatus().equals("4")){
+			strTmp = "开始印刷:"+CreatedBy+"<br>";
+		}else if(porder.getStatus().equals("5")){
+			strTmp = "开始复合:"+CreatedBy+"<br>";
+		}else if(porder.getStatus().equals("6")){
+			strTmp = "开始出货:"+CreatedBy+"<br>";
+		}else if(porder.getStatus().equals("7")){
+			strTmp = "完成订单:"+CreatedBy+"<br>";
+		}
+		
+		System.out.println("==CreatedBy=="+CreatedBy);
+		System.out.println("==strTmp=="+strTmp);
 		try {
 			int status = Integer.parseInt(porder.getStatus());
 			if(status!=7){
@@ -513,7 +535,9 @@ public class DaoImpl
 			PreparedStatement ps=conn.prepareStatement("update pg_order "
 						 + "set Status = ?, "
 						 + "Price = ? , "
-						 + "FlowRemark = ? "
+						 + "FlowRemark = ? ,"
+						 + "OperationRemark = case when OperationRemark is null or OperationRemark='' or OperationRemark = 'NULL' then '"+strTmp+"' "
+						 + "else concat(OperationRemark,'"+strTmp+"') end " 
 		        	     + "where OrderCode = ? "
 		        	     );
 			ps.setString(1,status+"");

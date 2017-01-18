@@ -19,51 +19,58 @@
             	<thead>
                 	<tr>
                         <th colspan="1"><h3>订单列表</h3></th>   
-                        <th colspan="2"><h5>订单信息：<input type='text' id='OrderTmp' size='10' maxlength='10' value ='' ></h5></th>            
-                        <th colspan="2"><h5>人员信息：<input type='text' id='UserTmp' size='10' maxlength='10' value ='' ></h5></th> 
-                        <th colspan="1"><h5><button class="btn btn-primary"  type="button" onclick="serach()">查询</button></h5></th>       
+                        <th colspan="5" align="center"><h5>&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
+                        订单信息：<input type='text' id='OrderTmp' size='10' maxlength='10' value ='' >&nbsp&nbsp&nbsp&nbsp
+                        人员信息：<input type='text' id='UserTmp' size='10' maxlength='10' value ='' >&nbsp&nbsp&nbsp&nbsp
+                        <button class="btn btn-primary"  type="button" onclick="serach()">查询</button>
+                        </h5></th> 
                         <th><h3><a href="javascript:user()">人员管理</a></h3></th>                                         
                     </tr>
                 </thead>
                 <tbody id="tbody">
 				 <tr class="warning">
-                        <td width="13%">
+                        <td width="12%">
                         	订单编码
                         </td >
-                       <td width="13%">
-                        	订单状态
+                       <td width="11%">
+                        	状态
                         </td>
-                        <td width="13%">
-                        	销售备注
+                        <td width="11%">
+                        	产品详情
                         </td> 
-                        <td width="13%">
+                        <td width="11%">
                         	价格
                         </td>
-                        <td width="13%">
+                        <td width="11%">
                         	流程备注
                         </td>
-                        <td width="13%">
+                        <td width="11%">
                         	销售人员
                         </td>
                         <td width="11%">
                         	操作
                         </td>
                         <td width="11%">
+                        	操作备注
+                        </td>
+                        <td width="11%">
                         	删除
                         </td>
                     </tr>                  
                     <tr>
-                       <td width="13%">
+                       <td width="12%">
                         </td >
-                       <td width="13%">
+                       <td width="11%">
                         </td>
-                        <td width="13%">
+                        <td width="11%">
                         </td> 
-                        <td width="13%">
+                        <td width="11%">
                         </td>
-                        <td width="13%">
+                        <td width="11%">
                         </td>
-                        <td width="13%">
+                        <td width="11%">
+                        </td>
+                        <td width="11%">
                         </td>
                         <td width="11%">
                         </td>
@@ -92,9 +99,9 @@
 	var url = document.URL;
 	function getdata(){
 		//alert("==url=3="+url);		
-		htmltmp="<tr class='warning'><td width='13%'>订单编码</td >"+
-		"<td width='13%'>订单状态</td><td width='13%'>销售备注</td><td width='13%'>价格</td>"+
-		"<td width='13%'>流程备注</td><td width='13%'>销售人员</td><td width='11%'>操作</td><td width='11%'>删除</td></tr>";
+		htmltmp="<tr class='warning'><td width='12%'>订单编码</td >"+
+		"<td width='11%'>状态</td><td width='11%'>产品详情</td><td width='11%'>价格</td>"+
+		"<td width='11%'>流程备注</td><td width='11%'>销售人员</td><td width='11%'>操作</td><td width='11%'>操作备注</td><td width='11%'>删除</td></tr>";
 		 $.ajax({
 		        type: "Post",
 		        url: "GetCount?Name=pg_order&Condition=where Status != -1",
@@ -137,68 +144,68 @@
                         	for(var i=0;i<data.length;i++){   
                         		 //alert("==="+i);
                         		 //0,提交材料 1,价格反馈 2,提交订单 3,已接受 4,正在制版 5,正在印刷 6,正在复合 7,正在出货 100,完成)
-                        		 htmltmp=htmltmp+"<tr><td width='13%'>"+data[i].OrderCode+"</td>";    
+                        		 htmltmp=htmltmp+"<tr><td width='12%'>"+data[i].OrderCode+"</td>";    
                         		 if(data[i].Status=="0"){
-                          			htmltmp=htmltmp+"<td width='13%'>已咨询价格</td>";
+                          			htmltmp=htmltmp+"<td width='11%'><font color='#FF0000'>已咨询价格</font></td>";
                           		 }else if(data[i].Status=="1"){
-                          			htmltmp=htmltmp+"<td width='13%'>已价格反馈</td>";
+                          			htmltmp=htmltmp+"<td width='11%'><font color='#0000FF'>已价格反馈</font></td>";
                           		 }else if(data[i].Status=="2"){
-                          			htmltmp=htmltmp+"<td width='13%'>已提交订单</td>";
+                          			htmltmp=htmltmp+"<td width='11%'><font color='#FF00FF'>已提交订单</font></td>";
                           		 }else if(data[i].Status=="3"){
-                          			htmltmp=htmltmp+"<td width='13%'>已接受订单</td>";
+                          			htmltmp=htmltmp+"<td width='11%'><font color='#00FF00'>已接受订单</font></td>";
                           		 }else if(data[i].Status=="4"){
-                          			htmltmp=htmltmp+"<td width='13%'>正在制版中</td>";
+                          			htmltmp=htmltmp+"<td width='11%'>正在制版中</td>";
                           		 }else if(data[i].Status=="5"){
-                          			htmltmp=htmltmp+"<td width='13%'>正在印刷中</td>";
+                          			htmltmp=htmltmp+"<td width='11%'>正在印刷中</td>";
                           		 }else if(data[i].Status=="6"){
-                          			htmltmp=htmltmp+"<td width='13%'>正在复合中</td>";
+                          			htmltmp=htmltmp+"<td width='11%'>正在复合中</td>";
                           		 }else if(data[i].Status=="7"){
-                          			htmltmp=htmltmp+"<td width='13%'>正在出货中</td>";
+                          			htmltmp=htmltmp+"<td width='11%'>正在出货中</td>";
                           		 }else if(data[i].Status=="100"){
-                          			htmltmp=htmltmp+"<td width='13%'>订单已完成</td>";
+                          			htmltmp=htmltmp+"<td width='11%'>订单已完成</td>";
                           		 }
                         		 if(data[i].Remark==undefined){
-                        			 htmltmp=htmltmp+"<td width='13%'></td>";
+                        			 htmltmp=htmltmp+"<td width='11%'></td>";
                         			 //alert("==="+data[i].Price);
                         		 }else{
-                        			 htmltmp=htmltmp+"<td width='13%'>"+data[i].Remark+"</td>";
+                        			 htmltmp=htmltmp+"<td width='11%'>"+data[i].Remark+"</td>";
                         		 }
                         		 if(data[i].Price==undefined){
                         			 if(data[i].Status=="0"){
-                        				 htmltmp=htmltmp+"<td width='13%'>"+
-                            			 "<input type='text' id='Price"+i+"' size='10' maxlength='10' value ='' ></td>";
+                        				 htmltmp=htmltmp+"<td width='11%'>"+
+                            			 "<input type='text' id='Price"+i+"' size='6' maxlength='6' value ='' ></td>";
                         			 }else{
-                        				 htmltmp=htmltmp+"<td width='13%'>"+
-                            			 "<input type='text' id='Price"+i+"' size='10' readonly maxlength='10' value ='' ></td>";
+                        				 htmltmp=htmltmp+"<td width='11%'>"+
+                            			 "<input type='text' id='Price"+i+"' size='6' readonly maxlength='6' value ='' ></td>";
                         			 }                        			 
                         		 }else{
                         			 if(data[i].Status=="0"){
-                        				 htmltmp=htmltmp+"<td width='13%'>"+
+                        				 htmltmp=htmltmp+"<td width='11%'>"+
                             			 "<input type='text' id='Price"+i+"' size='10' maxlength='10' value ='"+data[i].Price+"' ></td>";
                         			 }else{
-                        				 htmltmp=htmltmp+"<td width='13%'>"+
+                        				 htmltmp=htmltmp+"<td width='11%'>"+
                             			 "<input type='text' id='Price"+i+"' size='10' readonly maxlength='10' value ='"+data[i].Price+"' ></td>";
                         			 }
                         		 }
                         		 if(data[i].FlowRemark==undefined){
                         			 if(data[i].Status=="3"||data[i].Status=="4"||data[i].Status=="5"||data[i].Status=="6"||data[i].Status=="7"){
-                        				 htmltmp=htmltmp+"<td width='13%'><textarea  id='FlowRemark"+i+"' rows='2'></textarea></td>";
+                        				 htmltmp=htmltmp+"<td width='11%'><textarea  id='FlowRemark"+i+"' rows='2'></textarea></td>";
                         			 }else{
-                        				 htmltmp=htmltmp+"<td width='13%'><textarea  id='FlowRemark"+i+"' readonly rows='2'></textarea></td>";
+                        				 htmltmp=htmltmp+"<td width='11%'><textarea  id='FlowRemark"+i+"' readonly rows='2'></textarea></td>";
                         			 }  
                         			 //alert("==="+data[i].Price);
                         		 }else{
                          			 if(data[i].Status=="3"||data[i].Status=="4"||data[i].Status=="5"||data[i].Status=="6"||data[i].Status=="7"){
-                        				 htmltmp=htmltmp+"<td width='13%'><textarea  id='FlowRemark"+i+"' rows='2'>"+data[i].FlowRemark+"</textarea></td>";
+                        				 htmltmp=htmltmp+"<td width='11%'><textarea  id='FlowRemark"+i+"' rows='2'>"+data[i].FlowRemark+"</textarea></td>";
                         			 }else{
-                        				 htmltmp=htmltmp+"<td width='13%'><textarea  id='FlowRemark"+i+"' readonly rows='2'>"+data[i].FlowRemark+"</textarea></td>";
+                        				 htmltmp=htmltmp+"<td width='11%'><textarea  id='FlowRemark"+i+"' readonly rows='2'>"+data[i].FlowRemark+"</textarea></td>";
                         			 } 
                         		 }
                         		 if(data[i].UserName==undefined){
-                        			 htmltmp=htmltmp+"<td width='13%'></td>";
+                        			 htmltmp=htmltmp+"<td width='11%'></td>";
                         			 //alert("==="+data[i].Price);
                         		 }else{
-                        			 htmltmp=htmltmp+"<td width='13%'>"+data[i].UserName+"</td>";
+                        			 htmltmp=htmltmp+"<td width='11%'>"+data[i].UserName+"</td>";
                         		 }
                         		 if(data[i].Status=="0"){
                            			htmltmp=htmltmp+"<td width='11%'><a href='javascript:doNext(\""+data[i].OrderCode+"\",\""+data[i].Status+"\","+i+");' target='_blank'>"+"反馈价格"+"</a></td>";
@@ -217,8 +224,14 @@
                            		 }else if(data[i].Status=="7"){
                            			htmltmp=htmltmp+"<td width='11%'><a href='javascript:doNext(\""+data[i].OrderCode+"\",\""+data[i].Status+"\","+i+");' target='_blank'>"+"完成订单"+"</a></td>";
                            		 }else if(data[i].Status=="100"){
-                           			htmltmp=htmltmp+"<td width='15%'>订单已完成</td>";
+                           			htmltmp=htmltmp+"<td width='11%'>订单已完成</td>";
                            		 }
+                        		 if(data[i].OperationRemark==undefined){
+                        			 htmltmp=htmltmp+"<td width='11%'></td>";
+                        			 //alert("==="+data[i].Price);
+                        		 }else{
+                        			 htmltmp=htmltmp+"<td width='11%'>"+data[i].OperationRemark+"</td>";
+                        		 }
                           		 htmltmp=htmltmp+"<td width='11%'><a href='javascript:deleteOrder(\""+data[i].OrderCode+"\");' target='_blank'>"+"删除"+"</a></td></tr>";	                       		 
                         	} 
                            end();
@@ -231,7 +244,7 @@
 		}
 	}
 	function end(){
-		htmltmp=htmltmp+"<tr class='warning'><td colspan='1' ></td ><td colspan='6' align='center'><a href='javascript:paging(1);'"+
+		htmltmp=htmltmp+"<tr class='warning'><td colspan='1' ></td ><td colspan='7' align='center'><a href='javascript:paging(1);'"+
 		"target='_blank'>首页&nbsp</a>";
 		var sum = count*1+1;
 		for(var j = 1; j<sum; j++){ 
@@ -241,12 +254,15 @@
 		document.getElementById('tbody').innerHTML=htmltmp;
 	}	
 	function paging(currentPage) {
-		htmltmp="<tr class='warning'><td width='13%'>订单编码</td >"+
-		"<td width='13%'>订单状态</td><td width='13%'>销售备注</td><td width='13%'>价格</td>"+
-		"<td width='13%'>流程备注</td><td width='13%'>销售人员</td><td width='11%'>操作</td><td width='11%'>删除</td></tr>";
+		htmltmp="<tr class='warning'><td width='12%'>订单编码</td >"+
+		"<td width='11%'>状态</td><td width='11%'>产品详情</td><td width='11%'>价格</td>"+
+		"<td width='11%'>流程备注</td><td width='11%'>销售人员</td><td width='11%'>操作</td><td width='11%'>操作备注</td><td width='11%'>删除</td></tr>";
 		init(currentPage)
 	}
 	function doNext(orderCode,currentStatus,number){
+		var tmpUserID = url.split('?')[1];  
+		var UserName = tmpUserID.split("=")[1];  
+		//alert("==111="+UserName);
 		var Price = document.getElementById('Price'+number).value;
 		var FlowRemark = document.getElementById('FlowRemark'+number).value;
 		if(Price==""&&currentStatus==0){			
@@ -257,6 +273,7 @@
 				   '","Status":"'+currentStatus+
 				   '","Price":"'+Price+
 				   '","FlowRemark":"'+FlowRemark+
+				   '","CreatedBy":"'+UserName+
 			       '"}';	
 				$.ajax({
 					 type: "Post",
@@ -304,12 +321,15 @@
 	}
 	
 	function serach(){
-		htmltmp="<tr class='warning'><td width='13%'>订单编码</td >"+
-		"<td width='13%'>订单状态</td><td width='13%'>销售备注</td><td width='13%'>价格</td>"+
-		"<td width='13%'>流程备注</td><td width='13%'>销售人员</td><td width='11%'>操作</td><td width='11%'>删除</td></tr>";
+		htmltmp="<tr class='warning'><td width='12%'>订单编码</td >"+
+		"<td width='11%'>状态</td><td width='11%'>产品详情</td><td width='11%'>价格</td>"+
+		"<td width='11%'>流程备注</td><td width='11%'>销售人员</td><td width='11%'>操作</td><td width='11%'>操作备注</td><td width='11%'>删除</td></tr>";
 		init(1);
 	}
-	
+	function orderrefresh(){ 
+		window.location.reload(); 
+	} 
+	setTimeout('orderrefresh()',600000);
 </script>
 </html>
 
