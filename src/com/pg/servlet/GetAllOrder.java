@@ -35,6 +35,7 @@ public class GetAllOrder extends HttpServlet {
 		String Model=request.getParameter("Model");
 		String Type=request.getParameter("Type");
 		String Condition=request.getParameter("Condition");
+		Condition = new String(Condition.getBytes("ISO-8859-1"), "UTF-8");
 		String CreatedBy = "";
 		String CurrentPage = "";
 		String EachPage = "";

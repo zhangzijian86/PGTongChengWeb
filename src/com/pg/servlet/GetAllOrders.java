@@ -32,10 +32,16 @@ public class GetAllOrders extends HttpServlet {
 	    PrintWriter out=response.getWriter();
 		String CurrentPage=request.getParameter("CurrentPage");
 		String EachPage=request.getParameter("EachPage");
-		System.out.println("====doPost=============CurrentPage======"+CurrentPage);
-		System.out.println("====doPost=============EachPage======"+EachPage);
+		String UserTmp=request.getParameter("UserTmp");
+		UserTmp = new String(UserTmp.getBytes("ISO-8859-1"), "UTF-8");
+		String OrderTmp=request.getParameter("OrderTmp");
+		OrderTmp = new String(OrderTmp.getBytes("ISO-8859-1"), "UTF-8");
+		System.out.println("====GetAllOrders=============CurrentPage======"+CurrentPage);
+		System.out.println("====GetAllOrders=============EachPage======"+EachPage);
+		System.out.println("====GetAllOrders=============OrderTmp======"+OrderTmp);
+		System.out.println("====GetAllOrders=============UserTmp======"+UserTmp);
 		DaoImpl userDaoImpl=new DaoImpl();
-		List<Pg_order> list=userDaoImpl.GetAllOrders(CurrentPage,EachPage);
+		List<Pg_order> list=userDaoImpl.GetAllOrders(UserTmp,OrderTmp,CurrentPage,EachPage);
 		HttpSession session = request.getSession(); 
 		if(session==null||session.getAttribute("UserCode")==null)
 	    {

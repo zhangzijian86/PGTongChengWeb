@@ -18,7 +18,10 @@
         	<table class="table table-hover table-bordered">
             	<thead>
                 	<tr>
-                        <th colspan="6"><h3>订单列表</h3></th>     
+                        <th colspan="1"><h3>订单列表</h3></th>   
+                        <th colspan="2"><h5>订单信息：<input type='text' id='OrderTmp' size='10' maxlength='10' value ='' ></h5></th>            
+                        <th colspan="2"><h5>人员信息：<input type='text' id='UserTmp' size='10' maxlength='10' value ='' ></h5></th> 
+                        <th colspan="1"><h5><button class="btn btn-primary"  type="button" onclick="serach()">查询</button></h5></th>       
                         <th><h3><a href="javascript:user()">人员管理</a></h3></th>                                         
                     </tr>
                 </thead>
@@ -113,10 +116,16 @@
 		});		
 	}	
 	function init(currentPage) {
+		//url: "GetAllOrders?CurrentPage="+currentPage+"&EachPage=10&User="+user+"&Order="order,
+		//		 url: "GetAllOrders?CurrentPage="+currentPage+"&EachPage=10",
+		var userTmp = document.getElementById("UserTmp").value;
+		var orderTmp = document.getElementById("OrderTmp").value;
+		//alert("====user===="+userTmp);
+		//alert("====order===="+orderTmp);
 		if(count!=-1){
 			 $.ajax({
 			        type: "Post",
-			        url: "GetAllOrders?CurrentPage="+currentPage+"&EachPage=10",
+			        url: "GetAllOrders?UserTmp="+userTmp+"&OrderTmp="+orderTmp+"&CurrentPage="+currentPage+"&EachPage=10",
 			        dataType: "json",
 			        data: {		            
 			        },
@@ -292,6 +301,13 @@
 	}	
 	function user(){
 		window.location.href="UserList.html"
+	}
+	
+	function serach(){
+		htmltmp="<tr class='warning'><td width='13%'>订单编码</td >"+
+		"<td width='13%'>订单状态</td><td width='13%'>销售备注</td><td width='13%'>价格</td>"+
+		"<td width='13%'>流程备注</td><td width='13%'>销售人员</td><td width='11%'>操作</td><td width='11%'>删除</td></tr>";
+		init(1);
 	}
 	
 </script>

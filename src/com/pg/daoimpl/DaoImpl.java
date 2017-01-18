@@ -198,17 +198,20 @@ public class DaoImpl
 					ps=conn.prepareStatement(
 							"select OrderID,OrderCode,Status,Remark,FlowRemark,Price,CreatedBy,CreatedDate,ModifiedBy,ModifiedDate"
 							+ " from pg_order where Status!=-1 and Status <= 2 "+Condition+" "
-							+ " and CreatedBy = '"+CreatedBy+"' order by Status,ModifiedDate desc  limit ?, ?");
+							+ " and CreatedBy = '"+CreatedBy+"' "
+						    + " order by Status,ModifiedDate desc  limit ?, ?");
 				}else if(Type.equals("1")){
 					ps=conn.prepareStatement(
 							"select OrderID,OrderCode,Status,Remark,FlowRemark,Price,CreatedBy,CreatedDate,ModifiedBy,ModifiedDate"
 							+ " from pg_order where Status > 2 and  Status < 100 "+Condition+"  "
-							+ "  and CreatedBy = '"+CreatedBy+"' order by Status,ModifiedDate desc  limit ?, ?");
+							+ "  and CreatedBy = '"+CreatedBy+"' "
+							+ " order by Status,ModifiedDate desc  limit ?, ?");
 				}else if(Type.equals("2")){
 					ps=conn.prepareStatement(
 							"select OrderID,OrderCode,Status,Remark,FlowRemark,Price,CreatedBy,CreatedDate,ModifiedBy,ModifiedDate"
 							+ " from pg_order where Status = 100 "+Condition+"  "
-							+ " and CreatedBy = '"+CreatedBy+"' order by Status,ModifiedDate desc  limit ?, ?");
+							+ " and CreatedBy = '"+CreatedBy+"' "
+							+ " order by Status,ModifiedDate desc  limit ?, ?");
 				}				
 				int intcurrentPage = Integer.parseInt(CurrentPage);
 				int inteachPage = Integer.parseInt(EachPage);
@@ -222,18 +225,24 @@ public class DaoImpl
 				if(Type.equals("0")){
 					ps=conn.prepareStatement(
 							"select OrderID,OrderCode,Status,Remark,FlowRemark,Price,CreatedBy,CreatedDate,ModifiedBy,ModifiedDate"
-							+ " from pg_order where Status!=-1 and Status <= 2 "+Condition+"  "
-							+ " and CreatedBy = '"+CreatedBy+"' order by Status,ModifiedDate desc");
+							+ " from pg_order where Status!=-1 and Status <= 2 and (OrderCode like '%"+Condition+"%'    "
+							+ " or Remark like '%"+Condition+"%' )"
+							+ " and CreatedBy = '"+CreatedBy+"' "							
+							+ " order by Status,ModifiedDate desc");
 				}else if(Type.equals("1")){
 					ps=conn.prepareStatement(
 							"select OrderID,OrderCode,Status,Remark,FlowRemark,Price,CreatedBy,CreatedDate,ModifiedBy,ModifiedDate"
-							+ " from pg_order where Status > 2 and  Status < 100 and OrderCode like '%"+Condition+"%'   "
-							+ " and CreatedBy = '"+CreatedBy+"' order by Status,ModifiedDate desc");
+							+ " from pg_order where Status > 2 and  Status < 100 and (OrderCode like '%"+Condition+"%'  "
+							+ " or Remark like '%"+Condition+"%' )"
+							+ " and CreatedBy = '"+CreatedBy+"' "
+							+ " order by Status,ModifiedDate desc");
 				}else if(Type.equals("2")){
 					ps=conn.prepareStatement(
 							"select OrderID,OrderCode,Status,Remark,FlowRemark,Price,CreatedBy,CreatedDate,ModifiedBy,ModifiedDate"
-							+ " from pg_order where Status = 100 and OrderCode like '%"+Condition+"%'   "
-						    + " and CreatedBy = '"+CreatedBy+"' order by Status,ModifiedDate desc");
+							+ " from pg_order where Status = 100 and (OrderCode like '%"+Condition+"%'   "
+							+ " or Remark like '%"+Condition+"%' )"
+						    + " and CreatedBy = '"+CreatedBy+"' "
+						    + " order by Status,ModifiedDate desc");
 				}	
 			}
 			System.out.println("=GetAllOrder=sql="+ps.toString());
@@ -409,7 +418,7 @@ public class DaoImpl
     	return i;
     }
     
-    public List<Pg_order> GetAllOrders(String currentPage,String eachPage) 
+    public List<Pg_order> GetAllOrders(String UserTmp,String OrderTmp,String currentPage,String eachPage) 
    	{
    		int rows;
    		GetConn getConn=new GetConn();
@@ -417,6 +426,13 @@ public class DaoImpl
    		Connection conn=getConn.getConnection();
    		List<Pg_order> list=new ArrayList<Pg_order>();
    		Pg_order porder = null;
+   		String strTmp = "";
+   		if(UserTmp!=null&&!UserTmp.trim().equals("")){
+   			strTmp = "and ( pg_order.CreatedBy = '"+UserTmp+"' or pg_user.username ='"+UserTmp+"')";
+   		}
+   		if(OrderTmp!=null&&!OrderTmp.trim().equals("")){
+   			strTmp = strTmp + " and (pg_order.Remark like '%"+OrderTmp+"%' or OrderCode like '%"+OrderTmp+"%')";
+   		}
    		try {
    			PreparedStatement ps=conn.prepareStatement(
    					"select OrderID,OrderCode,pg_order.Status,pg_order.Remark,FlowRemark,"
@@ -424,7 +440,7 @@ public class DaoImpl
    					+ "pg_order.ModifiedDate,pg_user.username "
    					+ "from pg_order "
    					+ "left join pg_user on pg_order.CreatedBy = pg_user.usercode "
-   					+ "where  pg_order.Status!=-1 "
+   					+ "where  pg_order.Status!=-1 "+ strTmp  					
    					+ "order by pg_order.Status ,pg_order.ModifiedDate desc limit ?, ?");
    			int intcurrentPage = Integer.parseInt(currentPage);
    			int inteachPage = Integer.parseInt(eachPage);
