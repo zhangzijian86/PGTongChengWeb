@@ -800,6 +800,83 @@ public static class SeaBridgeInterface
 }
 
 
+GetNewsPhone
+CREATE TABLE `pg_news` (
+  `NewsID` varchar(36) NOT NULL COMMENT '新闻ID',
+  `NewsCode` varchar(36) NOT NULL COMMENT '新闻编码',
+  `title` varchar(255) DEFAULT NULL COMMENT '新闻标题',  
+  `Content` varchar(1000) DEFAULT NULL COMMENT '新闻内容',
+  `Remark` varchar(1000) DEFAULT NULL COMMENT '新闻备注',
+  `Status` int(11) NOT NULL DEFAULT '1' COMMENT '状态(0,有效，-1,删除)',
+  `CreatedBy` varchar(20) NOT NULL DEFAULT 'SystemAdmin' COMMENT '创建人',
+  `CreatedDate` datetime NOT NULL COMMENT '创建时间',
+  `ModifiedBy` varchar(20) NOT NULL DEFAULT 'SystemAdmin' COMMENT '修改人',
+  `ModifiedDate` datetime NOT NULL COMMENT '修改时间',
+  PRIMARY KEY (`NewsID`)
+)ENGINE=InnoDB DEFAULT CHARSET=utf8 COMMENT='新闻表';
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+NewsID
+NewsCode
+title
+Content
+Remark
+Status
+CreatedBy
+CreatedDate
+ModifiedBy
+ModifiedDate
+
+insert into pg_news(NewsID,NewsCode,title,Content,Remark,Status,CreatedBy,CreatedDate,ModifiedBy,ModifiedDate)
+values('3','3','title33','Content33','Remark33','0','yq','2017-01-01','yq','2017-01-01');
+insert into pg_news(NewsID,NewsCode,title,Content,Remark,Status,CreatedBy,CreatedDate,ModifiedBy,ModifiedDate)
+values('2','2','title22','Content22','Remark22','0','yq','2017-01-01','yq','2017-01-01');
+insert into pg_news(NewsID,NewsCode,title,Content,Remark,Status,CreatedBy,CreatedDate,ModifiedBy,ModifiedDate)
+values('1','1','title11','Content11','Remark11','0','yq','2017-01-01','yq','2017-01-01');
+
+
 
 
 

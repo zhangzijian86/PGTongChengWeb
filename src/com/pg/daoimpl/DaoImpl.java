@@ -11,6 +11,7 @@ import java.util.Random;
 import java.util.UUID;
 
 import com.pg.bean.Pg_homeinfo;
+import com.pg.bean.Pg_news;
 import com.pg.bean.Pg_order;
 import com.pg.bean.Pg_user;
 import com.pg.db.GetConn;
@@ -630,4 +631,51 @@ public class DaoImpl
 		getConn.closeconn(conn);
     	return i;
     }
+    
+    public List<Pg_news> GetNewsPhone(String NewsCode) 
+   	{
+   		int rows;
+   		GetConn getConn=new GetConn();
+   		ResultSet rs = null;
+   		Connection conn=getConn.getConnection();
+   		List<Pg_news> list=new ArrayList<Pg_news>();
+   		Pg_news pnews = null;   	
+   		String strTmp = "";
+   		System.out.println("=GetNewsPhone=NewsCode="+NewsCode);
+   		if(NewsCode!=null&&!NewsCode.trim().equals("")){
+   			strTmp = "where NewsCode='"+NewsCode+"'";
+   		}
+   		try {
+   			PreparedStatement ps=conn.prepareStatement(
+   					"select NewsID,NewsCode,title,Content,Remark,Status,CreatedBy,CreatedDate,ModifiedBy,ModifiedDate "
+   					+ "from pg_news "+strTmp
+   					);
+   			System.out.println("=GetNewsPhone=sql="+ps.toString());
+   			rs=ps.executeQuery();
+   			if(rs!=null){    		
+   	    		rs.last();
+   	    		rows = rs.getRow();
+   	    		rs.beforeFirst();
+   	    		for(int i=0;i<rows;i++)
+   		    	{	    			
+   		    		rs.next();
+   		    		pnews = new Pg_news();
+   		    		pnews.setNewsID(rs.getString("NewsID"));
+   		    		pnews.setNewsCode(rs.getString("NewsCode"));
+   		    		pnews.setTitle(rs.getString("Title"));
+   		    		pnews.setContent(rs.getString("Content"));
+   		    		pnews.setStatus(rs.getString("Status"));
+   		    		pnews.setRemark(rs.getString("Remark"));   		    		
+   		    		pnews.setCreatedBy(rs.getString("CreatedBy"));
+   		    		pnews.setCreatedDate(rs.getString("CreatedDate"));
+   		    		pnews.setModifiedBy(rs.getString("ModifiedBy"));
+   		    		pnews.setModifiedDate(rs.getString("ModifiedDate"));
+   		    		list.add(pnews);
+   		    	}
+   			}
+   		} catch (SQLException e) {
+   			e.printStackTrace();
+   		}
+   		return list;
+   	}
 }
