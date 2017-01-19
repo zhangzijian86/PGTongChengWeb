@@ -647,12 +647,12 @@ public class DaoImpl
    		String strTmp = "";
    		System.out.println("=GetNewsPhone=NewsCode="+NewsCode);
    		if(NewsCode!=null&&!NewsCode.trim().equals("")){
-   			strTmp = "where NewsCode='"+NewsCode+"'";
+   			strTmp = "and NewsCode='"+NewsCode+"'";
    		}
    		try {
    			PreparedStatement ps=conn.prepareStatement(
    					"select NewsID,NewsCode,title,Content,Remark,Status,CreatedBy,CreatedDate,ModifiedBy,ModifiedDate "
-   					+ "from pg_news "+strTmp
+   					+ "from pg_news where Status !='-1' "+strTmp + " order by CreatedDate desc"
    					);
    			System.out.println("=GetNewsPhone=sql="+ps.toString());
    			rs=ps.executeQuery();
@@ -682,4 +682,179 @@ public class DaoImpl
    		}
    		return list;
    	}
+    
+    public List<Pg_news> GetNews(String NewsCode,String currentPage,String eachPage) 
+   	{
+   		int rows;
+   		GetConn getConn=new GetConn();
+   		ResultSet rs = null;
+   		Connection conn=getConn.getConnection();
+   		List<Pg_news> list=new ArrayList<Pg_news>();
+   		Pg_news pnews = null;   	
+   		String strTmp = "";
+   		System.out.println("=GetNewsPhone=NewsCode="+NewsCode);
+   		if(NewsCode!=null&&!NewsCode.trim().equals("")){
+   			strTmp = "and NewsCode='"+NewsCode+"'";
+   		}
+   		try {
+   			PreparedStatement ps=conn.prepareStatement(
+   					"select NewsID,NewsCode,title,Content,Remark,Status,CreatedBy,CreatedDate,ModifiedBy,ModifiedDate "
+   					+ "from pg_news where Status !='-1' "+strTmp + " order by CreatedDate desc  limit ?, ?"
+   					);   			
+   			int intcurrentPage = Integer.parseInt(currentPage);
+			int inteachPage = Integer.parseInt(eachPage);
+   			if(currentPage.equals("0")){
+				ps.setInt(1, 0);
+			}else{
+				ps.setInt(1, (intcurrentPage-1)*inteachPage);
+			}
+			ps.setInt(2, inteachPage);
+			System.out.println("=GetNews=sql="+ps.toString());
+   			rs=ps.executeQuery();
+   			if(rs!=null){    		
+   	    		rs.last();
+   	    		rows = rs.getRow();
+   	    		rs.beforeFirst();
+   	    		for(int i=0;i<rows;i++)
+   		    	{	    			
+   		    		rs.next();
+   		    		pnews = new Pg_news();
+   		    		pnews.setNewsID(rs.getString("NewsID"));
+   		    		pnews.setNewsCode(rs.getString("NewsCode"));
+   		    		pnews.setTitle(rs.getString("title"));
+   		    		pnews.setContent(rs.getString("Content"));
+   		    		pnews.setStatus(rs.getString("Status"));
+   		    		pnews.setRemark(rs.getString("Remark"));   		    		
+   		    		pnews.setCreatedBy(rs.getString("CreatedBy"));
+   		    		pnews.setCreatedDate(rs.getString("CreatedDate"));
+   		    		pnews.setModifiedBy(rs.getString("ModifiedBy"));
+   		    		pnews.setModifiedDate(rs.getString("ModifiedDate"));
+   		    		list.add(pnews);
+   		    	}
+   			}
+   		} catch (SQLException e) {
+   			e.printStackTrace();
+   		}
+   		return list;
+   	}
+    
+    public int DeleteNews(Pg_news pnews){
+    	GetConn getConn=new GetConn();
+		int i = 0;
+		Connection conn=getConn.getConnection();
+		try {
+			PreparedStatement ps=conn.prepareStatement("update pg_news "
+						 + "set Status = -1 "
+		        	     + "where NewsCode = ?"
+		        	     );
+			ps.setString(1,pnews.getNewsCode());	
+			System.out.println("=DeleteNews=sql="+ps.toString());
+			i=ps.executeUpdate();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		getConn.closeconn(conn);
+    	return i;
+    }
+    
+    public List<Pg_news> GetOneNews(String NewsCode) 
+   	{
+   		int rows;
+   		GetConn getConn=new GetConn();
+   		ResultSet rs = null;
+   		Connection conn=getConn.getConnection();
+   		List<Pg_news> list=new ArrayList<Pg_news>();
+   		Pg_news pnews = null;   	
+   		String strTmp = "";
+   		System.out.println("=GetOneNews=NewsCode="+NewsCode);
+   		if(NewsCode!=null&&!NewsCode.trim().equals("")){
+   			strTmp = "and NewsCode='"+NewsCode+"'";
+   		}
+   		try {
+   			PreparedStatement ps=conn.prepareStatement(
+   					"select NewsID,NewsCode,title,Content,Remark,Status,CreatedBy,CreatedDate,ModifiedBy,ModifiedDate "
+   					+ "from pg_news where Status !='-1' "+strTmp + " order by CreatedDate desc  "
+   					);   			
+			System.out.println("=GetOneNews=sql="+ps.toString());
+   			rs=ps.executeQuery();
+   			if(rs!=null){    		
+   	    		rs.last();
+   	    		rows = rs.getRow();
+   	    		rs.beforeFirst();
+   	    		for(int i=0;i<rows;i++)
+   		    	{	    			
+   		    		rs.next();
+   		    		pnews = new Pg_news();
+   		    		pnews.setNewsID(rs.getString("NewsID"));
+   		    		pnews.setNewsCode(rs.getString("NewsCode"));
+   		    		pnews.setTitle(rs.getString("title"));
+   		    		pnews.setContent(rs.getString("Content"));
+   		    		pnews.setStatus(rs.getString("Status"));
+   		    		pnews.setRemark(rs.getString("Remark"));   		    		
+   		    		pnews.setCreatedBy(rs.getString("CreatedBy"));
+   		    		pnews.setCreatedDate(rs.getString("CreatedDate"));
+   		    		pnews.setModifiedBy(rs.getString("ModifiedBy"));
+   		    		pnews.setModifiedDate(rs.getString("ModifiedDate"));
+   		    		list.add(pnews);
+   		    	}
+   			}
+   		} catch (SQLException e) {
+   			e.printStackTrace();
+   		}
+   		return list;
+   	}
+    
+    public int UpdateNews(Pg_news pnews){
+    	GetConn getConn=new GetConn();
+		int i = 0;
+		Connection conn=getConn.getConnection();
+		try {
+			PreparedStatement ps=conn.prepareStatement("update pg_news "
+						 + "set NewsCode = ?,"
+		        	     +" title = ?,"
+		        	     +" Content = ? "
+		        	     + "where NewsCode = ?"
+		        	     );
+			ps.setString(1,pnews.getNewsCode());	
+			ps.setString(2,pnews.getTitle());
+			ps.setString(3,pnews.getContent());
+			ps.setString(4,pnews.getNewsCode());
+			System.out.println("=UpdateNews=sql="+ps.toString());
+			i=ps.executeUpdate();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		getConn.closeconn(conn);
+    	return i;
+    }
+    
+    public int AddNews(Pg_news pnews){
+    	pnews.setCreatedBy(COMPANYNAME);
+    	pnews.setModifiedBy(COMPANYNAME);
+    	pnews.setNewsID(UUID.randomUUID().toString());
+    	GetConn getConn=new GetConn();
+		int i = 0;
+		Connection conn=getConn.getConnection();
+		try {
+			PreparedStatement ps=conn.prepareStatement("insert into pg_news "
+					     + "(NewsID,NewsCode,title,Content,Remark,Status,CreatedBy,CreatedDate,ModifiedBy,ModifiedDate)"
+					     + "value("
+						 + " ?,?,?,?,?,1,?,now(),?,now()"
+		        	     + ")"
+		        	     );
+			ps.setString(1,pnews.getNewsID());
+			ps.setString(2,pnews.getNewsCode());	
+			ps.setString(3,pnews.getTitle());
+			ps.setString(4,pnews.getContent());
+			ps.setString(5,pnews.getRemark());
+			ps.setString(6,pnews.getCreatedBy());
+			ps.setString(7,pnews.getModifiedBy());			
+			System.out.println("=AddNews=sql="+ps.toString());
+			i=ps.executeUpdate();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		getConn.closeconn(conn);
+    	return i;
+    }
 }

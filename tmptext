@@ -877,6 +877,35 @@ insert into pg_news(NewsID,NewsCode,title,Content,Remark,Status,CreatedBy,Create
 values('1','1','title11','Content11','Remark11','0','yq','2017-01-01','yq','2017-01-01');
 
 
+insert into pg_news(NewsID,NewsCode,title,Content,Remark,Status,CreatedBy,CreatedDate,ModifiedBy,ModifiedDate)
+values('4','4','title44','Content44','Remark44','0','yq','2017-01-01','yq','2017-01-01');
+
+insert into pg_news(NewsID,NewsCode,title,Content,Remark,Status,CreatedBy,CreatedDate,ModifiedBy,ModifiedDate)
+values('5','5','title55','Content55','Remark55','0','yq','2017-01-01','yq','2017-01-01');
+
+insert into pg_news(NewsID,NewsCode,title,Content,Remark,Status,CreatedBy,CreatedDate,ModifiedBy,ModifiedDate)
+values('6','6','title66','Content66','Remark66','0','yq','2017-01-01','yq','2017-01-01');
+
+insert into pg_news(NewsID,NewsCode,title,Content,Remark,Status,CreatedBy,CreatedDate,ModifiedBy,ModifiedDate)
+values('7','7','title77','Content77','Remark77','0','yq','2017-01-01','yq','2017-01-01');
+
+insert into pg_news(NewsID,NewsCode,title,Content,Remark,Status,CreatedBy,CreatedDate,ModifiedBy,ModifiedDate)
+values('8','8','title88','Content88','Remark88','0','yq','2017-01-01','yq','2017-01-01');
+
+insert into pg_news(NewsID,NewsCode,title,Content,Remark,Status,CreatedBy,CreatedDate,ModifiedBy,ModifiedDate)
+values('9','9','title99','Content99','Remark99','0','yq','2017-01-01','yq','2017-01-01');
+
+insert into pg_news(NewsID,NewsCode,title,Content,Remark,Status,CreatedBy,CreatedDate,ModifiedBy,ModifiedDate)
+values('10','10','title10','Content10','Remark10','0','yq','2017-01-01','yq','2017-01-01');
+
+insert into pg_news(NewsID,NewsCode,title,Content,Remark,Status,CreatedBy,CreatedDate,ModifiedBy,ModifiedDate)
+values('11','11','titlea1','Contenta1','Remarka1','0','yq','2017-01-01','yq','2017-01-01');
+
+insert into pg_news(NewsID,NewsCode,title,Content,Remark,Status,CreatedBy,CreatedDate,ModifiedBy,ModifiedDate)
+values('12','12','titlea2','Contenta2','Remarka2','0','yq','2017-01-01','yq','2017-01-01');
+
+
+
 
 
 var jsonStr='{"UserCode":"'+document.getElementById("UserCode").value+
@@ -906,6 +935,51 @@ var jsonStr='{"UserCode":"'+document.getElementById("UserCode").value+
 	       error: function( msg ) { 
 	    	   alert("新建人员失败"); 
 	        }
-		});	
+		});
 
+
+select NewsID,NewsCode,title,Content,Remark,Status,CreatedBy,CreatedDate,ModifiedBy,ModifiedDate from pg_news order by CreatedDate desc
+
+
+
+	function confirm()
+	{
+		var GenderStr = 1;
+		if(document.getElementById("Gender").value=="女"){
+			GenderStr = 2;
+		}
+		var jsonStr='{"UserID":"'+document.getElementById("UserID").value+
+				   '","UserCode":"'+document.getElementById("UserCode").value+
+				   '","UserName":"'+document.getElementById("UserName").value+
+				   '","Password":"'+document.getElementById("Password").value+
+				   '","Gender":"'+GenderStr+
+				   '","Address":"'+document.getElementById("Address").value+
+				   '","ISDN":"'+document.getElementById("ISDN").value+
+				   '","Telephone":"'+document.getElementById("Telephone").value+
+				   '","Mobile":"'+document.getElementById("Mobile").value+
+				   '","Email":"'+document.getElementById("Email").value+
+				   '","UserClass":"'+document.getElementById("UserClass").value+
+			       '"}';	
+		$.ajax({
+	        type: "Post",
+	        url: "UpdateUser?jsonStr="+jsonStr,
+	        dataType: "html",
+	        data: {		            
+	        },
+	        success: function (data) {
+	        	if(data=="error"){		        	
+	        	}else{
+	        		window.opener.location.href = window.opener.location.href;
+	        		window.close();  
+	        	}	        	
+	        },
+	       error: function( msg ) { 
+	    	   alert("修改新闻信息失败"); 
+	        }
+		});	
+	}
+
+
+
+	
 

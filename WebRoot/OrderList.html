@@ -19,12 +19,13 @@
             	<thead>
                 	<tr>
                         <th colspan="1"><h3>订单列表</h3></th>   
-                        <th colspan="6" align="center"><h5>&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
+                        <th colspan="5" align="center"><h5>&nbsp&nbsp&nbsp&nbsp&nbsp
                         订单信息：<input type='text' id='OrderTmp' size='10' maxlength='10' value ='' >&nbsp&nbsp&nbsp&nbsp
                         人员信息：<input type='text' id='UserTmp' size='10' maxlength='10' value ='' >&nbsp&nbsp&nbsp&nbsp
                         <button class="btn btn-primary"  type="button" onclick="serach()">查询</button>
                         </h5></th> 
-                        <th><h3><a href="javascript:user()">人员管理</a></h3></th>     
+                        <th><h3><a href="javascript:user()">人员管理</a></h3></th>    
+                        <th><h3><a href="javascript:news()">新闻管理</a></h3></th>      
                         <th><h3><a href="javascript:signOut()">退出</a></h3></th>                                               
                     </tr>
                 </thead>
@@ -317,8 +318,13 @@
 			});	
 		}
 	}	
+	
 	function user(){
 		window.location.href="UserList.html"
+	}
+	
+	function news(){
+		window.location.href="NewsList.html"
 	}
 	
 	function serach(){

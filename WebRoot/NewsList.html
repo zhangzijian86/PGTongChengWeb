@@ -3,7 +3,7 @@
 <head>
 	    <meta charset="utf-8">
     	<meta name="viewport" content="width=device-width, initial-scale=1.0">
-    	<title>人员列表</title>
+    	<title>新闻列表</title>
     	<!-- Bootstrap -->
     	<link href="css/bootstrap.css" rel="stylesheet">
         <link href="css/bootstrap-responsive.css" rel="stylesheet">
@@ -18,44 +18,39 @@
         	<table class="table table-hover table-bordered">
             	<thead>
                 	<tr>
-                        <th colspan="4"><h3>人员列表</h3></th>     
-                        <th><h3><a href="javascript:adduser()">添加人员</a></h3></th>    
+                        <th colspan="3"><h3>新闻列表</h3></th>     
+                        <th><h3><a href="javascript:adduser()">添加新闻</a></h3></th>    
                         <th><h3><a href="javascript:history.go(-1)">返回</a></h3></th>                                                               
                     </tr>
                 </thead>
                 <tbody id="tbody">
 				 <tr class="warning">
-                        <td width="17%">
-                        	帐号
+                        <td width="15%">
+                        	编码
                         </td >
-                       <td width="17%">
-                        	姓名
+                       <td width="15%">
+                        	标题
                         </td>
-                        <td width="17%">
-                        	电话
+                        <td width="40%">
+                        	内容
                         </td> 
-                        <td width="17%">
-                        	手机
-                        </td>
-                        <td width="17%">
-                        	电子邮件
-                        </td>
+                        <td width="15%">
+                        	日期
+                        </td>                       
                         <td width="15%">
                         	删除
                         </td>
                     </tr>                  
                     <tr>
-                        <td width="17%">
+                        <td width="15%">
                         	<a href="javascript:modify();" target="_blank"></a>
                         </td >
-                        <td width="17%">                    	
+                        <td width="15%">                    	
                         </td>
-                        <td width="17%">                   
+                        <td width="40%">                   
                         </td>
-                        <td width="17%">                              	        
+                        <td width="15%">                              	        
                         </td>  
-                        <td width="17%">                              	        
-                        </td> 
                         <td width="15%">                              	        
                         </td>
                     </tr>
@@ -81,11 +76,11 @@
 	var count=-1;
 	function getdata(){
 		//alert("==url=="+url);		
-		htmltmp="<tr class='warning'><td width='17%'>帐号</td >"+
-		"<td width='17%'>姓名</td><td width='17%'>电话</td><td width='17%'>手机</td><td width='17%'>电子邮件</td><td width='15%'>删除</td></tr>";
+		htmltmp="<tr class='warning'><td width='15%'>编码</td >"+
+		"<td width='15%'>标题</td><td width='40%'>内容</td><td width='15%'>日期</td><td width='15%'>删除</td></tr>";
 		 $.ajax({
 		        type: "Post",
-		        url: "GetCount?Name=pg_user&Condition=where Status = 1",
+		        url: "GetCount?Name=pg_news&Condition=where Status != -1",
 		        dataType: "html",
 		        data: {		            
 		        },
@@ -98,7 +93,7 @@
 		        	}	        	
 		        },
 		       error: function( msg ) { 
-		    	   alert("获取人员信息失败"); 
+		    	   alert("获取新闻信息失败"); 
 		        }
 		});		
 	}	
@@ -106,7 +101,7 @@
 		if(count!=-1){
 			 $.ajax({
 			        type: "Post",
-			        url: "GetAllUsers?CurrentPage="+currentPage+"&EachPage=10",
+			        url: "GetNews?CurrentPage="+currentPage+"&EachPage=10",
 			        dataType: "json",
 			        data: {		            
 			        },
@@ -115,17 +110,11 @@
 			        		alert("帐号或密码错误!");
 			        	}else{			        		
                         	for(var i=0;i<data.length;i++){  
-                        		if(data[i].UserCode=="yq"){
-                            		htmltmp=htmltmp+"<tr><td width='17%'><a href='javascript:modify(\""+data[i].UserCode+"\");' target='_blank'>"+data[i].UserCode+"</a></td>"+
-                            		"<td width='17%'>"+data[i].UserName+"</td><td width='17%'>"+data[i].Telephone+"</td>"+
-                            		"<td width='17%'>"+data[i].Mobile+"</td><td width='17%'>"+data[i].Email+"</td>"+
-                            		"<td width='11%'></td></tr>";	
-                        		}else{
-                            		htmltmp=htmltmp+"<tr><td width='17%'><a href='javascript:modify(\""+data[i].UserCode+"\");' target='_blank'>"+data[i].UserCode+"</a></td>"+
-                            		"<td width='17%'>"+data[i].UserName+"</td><td width='17%'>"+data[i].Telephone+"</td>"+
-                            		"<td width='17%'>"+data[i].Mobile+"</td><td width='17%'>"+data[i].Email+"</td>"+
-                            		"<td width='11%'><a href='javascript:deleteUser(\""+data[i].UserCode+"\");' target='_blank'>"+"删除"+"</a></td></tr>";	
-                        		}	
+                        		var datatime = data[i].CreatedDate.substring(0,19);
+                           		htmltmp=htmltmp+"<tr><td width='15%'><a href='javascript:modify(\""+data[i].NewsCode+"\");' target='_blank'>"+data[i].NewsCode+"</a></td>"+
+                           		"<td width='15%'>"+data[i].title+"</td><td width='40%'>"+data[i].Content+"</td>"+
+                           		"<td width='15%'>"+datatime+"</td>"+
+                           		"<td width='15%'><a href='javascript:deleteNews(\""+data[i].NewsCode+"\");' target='_blank'>"+"删除"+"</a></td></tr>";	
                         	} 
                           //$.each(data,function(i,v){      
                           //    alert("==data=="+v.UserID);
@@ -134,7 +123,7 @@
 			        	}	        	
 			        },
 			       error: function( msg ) { 
-			    	   alert("获取人员信息失败"); 
+			    	   alert("获取新闻信息失败"); 
 			       }
 			});				
 		}
@@ -150,17 +139,17 @@
 		document.getElementById('tbody').innerHTML=htmltmp;
 	}
 	function paging(currentPage) {
-		htmltmp="<tr class='warning'><td width='17%'>编码</td >"+
-		"<td width='17%'>姓名</td><td width='17%'>电话</td><td width='17%'>手机</td><td width='17%'>电子邮件</td><td width='15%'>删除</td></tr>";
+		htmltmp="<tr class='warning'><td width='15%'>编码</td >"+
+		"<td width='15%'>标题</td><td width='40%'>内容</td><td width='15%'>日期</td><td width='15%'>删除</td></tr>";
 		init(currentPage)
 	}
-	function deleteUser(userCode){
-        if (confirm("你确定删除人员吗？")) {  
-        	var jsonStr='{"UserCode":"'+userCode+
+	function deleteNews(NewsCode){
+        if (confirm("你确定删除新闻吗？")) {  
+        	var jsonStr='{"NewsCode":"'+NewsCode+
  	        '"}';	
  			$.ajax({
 	 			 type: "Post",
-	 			 url: "DeleteUser?jsonStr="+jsonStr,
+	 			 url: "DeleteNews?jsonStr="+jsonStr,
 	 			 dataType: "html",
 	 			 data: {		            
 	 			 },
@@ -171,17 +160,17 @@
 	 			 	}	        	
 	 			 },
 	 			error: function( msg ) { 
-	 				   alert("删除人员信息失败"); 
+	 				   alert("删除新闻信息失败"); 
 	 			 }
  			});	
         }	
 	}	
 	
-	function modify(UserCode) {		
-		window.open("UserModify.html?userCode=" + UserCode, "",	"height=700, width=800");
+	function modify(NewsCode) {	
+		window.open("NewsModify.html?NewsCode=" + NewsCode, "",	"height=700, width=800");
 	}
 	function adduser(){
-		window.open("UserAdd.html", "",	"height=700, width=800");
+		window.open("NewsAdd.html", "",	"height=700, width=800");
 		//window.location.href="UserAdd.html"
 	}
 </script>
