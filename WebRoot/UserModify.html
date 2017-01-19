@@ -36,7 +36,18 @@
 								<input class="input-xxlarge" type="text" name="Password" id="Password" size="10"  placeholder="密码"  value ="" >
 							</div>
                         </td>
-                    </tr>  
+                    </tr> 
+                    <tr>
+                        <td>
+                        	<label class="control-label" for="inputEmail">类型</label>
+							<div class="controls">
+								<select id="UserClass">
+									<option value="2">手机用户</option>
+									<option value="1">系统用户</option>										
+								</select>
+							</div>
+                        </td>
+                    </tr>   
                    <tr>
                         <td>
                         	<label class="control-label" for="inputEmail">姓名</label>
@@ -135,6 +146,7 @@
 		        		document.getElementById("Telephone").value = data[0].Telephone;
 		        		document.getElementById("Mobile").value = data[0].Mobile;
 		        		document.getElementById("Email").value = data[0].Email;
+		        		document.getElementById("UserClass").value = data[0].UserClass;
 		        	}	        	
 		        },
 		       error: function( msg ) { 
@@ -158,6 +170,7 @@
 				   '","Telephone":"'+document.getElementById("Telephone").value+
 				   '","Mobile":"'+document.getElementById("Mobile").value+
 				   '","Email":"'+document.getElementById("Email").value+
+				   '","UserClass":"'+document.getElementById("UserClass").value+
 			       '"}';	
 		$.ajax({
 	        type: "Post",

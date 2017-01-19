@@ -285,7 +285,7 @@ public class DaoImpl
    		List<Pg_user> list=new ArrayList<Pg_user>();
    		Pg_user puser = null;
    		try {
-   			PreparedStatement ps=conn.prepareStatement("select UserID,UserCode,UserName,Password,Gender,Address,ISDN,Telephone,Mobile,Email"
+   			PreparedStatement ps=conn.prepareStatement("select UserID,UserCode,UserClass,UserName,Password,Gender,Address,ISDN,Telephone,Mobile,Email"
    					+ " from pg_user where UserCode ='"+UserCode+"'");
    			rs=ps.executeQuery();
    			if(rs!=null){    		
@@ -305,6 +305,7 @@ public class DaoImpl
    		    		puser.setAddress(rs.getString("Address"));
    		    		puser.setISDN(rs.getString("ISDN"));
    		    		puser.setPassword(rs.getString("Password"));
+   		    		puser.setUserClass(rs.getString("UserClass"));
    		    		list.add(puser);
    		    	}
    			}
@@ -328,7 +329,8 @@ public class DaoImpl
 		        	     +" ISDN = ?,"
 		        	     +" Telephone = ?,"
 		        	     +" Mobile = ?,"
-		        	     +" Email = ? "
+		        	     +" Email = ?,"
+		        	     +" UserClass = ? "
 		        	     + "where UserCode = ?"
 		        	     );
 			ps.setString(1,puser.getUserCode());	
@@ -340,7 +342,8 @@ public class DaoImpl
 			ps.setString(7,puser.getTelephone());
 			ps.setString(8,puser.getMobile());
 			ps.setString(9,puser.getEmail());
-			ps.setString(10,puser.getUserCode());
+			ps.setString(10,puser.getUserClass());			
+			ps.setString(11,puser.getUserCode());
 			System.out.println("=UpdateUser=sql="+ps.toString());
 			i=ps.executeUpdate();
 		} catch (SQLException e) {
@@ -393,23 +396,24 @@ public class DaoImpl
 		Connection conn=getConn.getConnection();
 		try {
 			PreparedStatement ps=conn.prepareStatement("insert into pg_user "
-					     + "(UserID,UserCode,UserName,Password,Gender,Address,ISDN,Telephone,Mobile,Email,UserClass,Status,CreatedBy,CreatedDate,ModifiedBy,ModifiedDate)"
+					     + "(UserID,UserCode,UserClass,UserName,Password,Gender,Address,ISDN,Telephone,Mobile,Email,Status,CreatedBy,CreatedDate,ModifiedBy,ModifiedDate)"
 					     + "value("
-						 + " ?,?,?,?,?,?,?,?,?,?,2,1,?,now(),?,now()"
+						 + " ?,?,?,?,?,?,?,?,?,?,?,1,?,now(),?,now()"
 		        	     + ")"
 		        	     );
 			ps.setString(1,puser.getUserID());
 			ps.setString(2,puser.getUserCode());	
-			ps.setString(3,puser.getUserName());
-			ps.setString(4,puser.getPassword());
-			ps.setString(5,puser.getGender());
-			ps.setString(6,puser.getAddress());
-			ps.setString(7,puser.getISDN());
-			ps.setString(8,puser.getTelephone());
-			ps.setString(9,puser.getMobile());
-			ps.setString(10,puser.getEmail());
-			ps.setString(11,puser.getCreatedBy());
-			ps.setString(12,puser.getModifiedBy());
+			ps.setString(3,puser.getUserClass());
+			ps.setString(4,puser.getUserName());
+			ps.setString(5,puser.getPassword());
+			ps.setString(6,puser.getGender());
+			ps.setString(7,puser.getAddress());
+			ps.setString(8,puser.getISDN());
+			ps.setString(9,puser.getTelephone());
+			ps.setString(10,puser.getMobile());
+			ps.setString(11,puser.getEmail());
+			ps.setString(12,puser.getCreatedBy());
+			ps.setString(13,puser.getModifiedBy());
 			
 			System.out.println("=AddUser=sql="+ps.toString());
 			i=ps.executeUpdate();

@@ -115,10 +115,17 @@
 			        		alert("帐号或密码错误!");
 			        	}else{			        		
                         	for(var i=0;i<data.length;i++){  
-                        		htmltmp=htmltmp+"<tr><td width='17%'><a href='javascript:modify(\""+data[i].UserCode+"\");' target='_blank'>"+data[i].UserCode+"</a></td>"+
-                        		"<td width='17%'>"+data[i].UserName+"</td><td width='17%'>"+data[i].Telephone+"</td>"+
-                        		"<td width='17%'>"+data[i].Mobile+"</td><td width='17%'>"+data[i].Email+"</td>"+
-                        		"<td width='11%'><a href='javascript:deleteUser(\""+data[i].UserCode+"\");' target='_blank'>"+"删除"+"</a></td></tr>";		
+                        		if(data[i].UserCode=="yq"){
+                            		htmltmp=htmltmp+"<tr><td width='17%'><a href='javascript:modify(\""+data[i].UserCode+"\");' target='_blank'>"+data[i].UserCode+"</a></td>"+
+                            		"<td width='17%'>"+data[i].UserName+"</td><td width='17%'>"+data[i].Telephone+"</td>"+
+                            		"<td width='17%'>"+data[i].Mobile+"</td><td width='17%'>"+data[i].Email+"</td>"+
+                            		"<td width='11%'></td></tr>";	
+                        		}else{
+                            		htmltmp=htmltmp+"<tr><td width='17%'><a href='javascript:modify(\""+data[i].UserCode+"\");' target='_blank'>"+data[i].UserCode+"</a></td>"+
+                            		"<td width='17%'>"+data[i].UserName+"</td><td width='17%'>"+data[i].Telephone+"</td>"+
+                            		"<td width='17%'>"+data[i].Mobile+"</td><td width='17%'>"+data[i].Email+"</td>"+
+                            		"<td width='11%'><a href='javascript:deleteUser(\""+data[i].UserCode+"\");' target='_blank'>"+"删除"+"</a></td></tr>";	
+                        		}	
                         	} 
                           //$.each(data,function(i,v){      
                           //    alert("==data=="+v.UserID);

@@ -879,4 +879,33 @@ values('1','1','title11','Content11','Remark11','0','yq','2017-01-01','yq','2017
 
 
 
+var jsonStr='{"UserCode":"'+document.getElementById("UserCode").value+
+				   '","UserName":"'+document.getElementById("UserName").value+
+				   '","Password":"'+document.getElementById("Password").value+
+				   '","Gender":"'+GenderStr+
+				   '","Address":"'+document.getElementById("Address").value+
+				   '","ISDN":"'+document.getElementById("ISDN").value+
+				   '","Telephone":"'+document.getElementById("Telephone").value+
+				   '","Mobile":"'+document.getElementById("Mobile").value+
+				   '","Email":"'+document.getElementById("Email").value+
+			       '"}';	
+		$.ajax({
+	        type: "Post",
+	        url: "AddUser?jsonStr="+jsonStr,
+	        dataType: "html",
+	        data: {		            
+	        },
+	        success: function (data) {
+	        	if(data=="error"){	
+	        		alert("新建人员失败"); 
+	        	}else{
+	        		window.opener.location.href = window.opener.location.href;
+	        		window.close();  
+	        	}	        	
+	        },
+	       error: function( msg ) { 
+	    	   alert("新建人员失败"); 
+	        }
+		});	
+
 

@@ -39,6 +39,17 @@
                     </tr>  
                     <tr>
                         <td>
+                        	<label class="control-label" for="inputEmail">类型</label>
+							<div class="controls">
+								<select id="UserClass">
+									<option value="2">手机用户</option>
+									<option value="1">系统用户</option>										
+								</select>
+							</div>
+                        </td>
+                    </tr>  
+                    <tr>
+                        <td>
                         	<label class="control-label" for="inputEmail">姓名</label>
 							<div class="controls">
 								<input class="input-xxlarge" type="text" name="UserName" id="UserName" size="10"  placeholder="姓名" value ="" >
@@ -142,6 +153,7 @@
 				   '","Telephone":"'+document.getElementById("Telephone").value+
 				   '","Mobile":"'+document.getElementById("Mobile").value+
 				   '","Email":"'+document.getElementById("Email").value+
+				   '","UserClass":"'+document.getElementById("UserClass").value+
 			       '"}';	
 		$.ajax({
 	        type: "Post",
