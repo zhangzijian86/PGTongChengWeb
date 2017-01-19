@@ -94,35 +94,47 @@
     <servlet-name>AddUser</servlet-name>
     <servlet-class>com.pg.servlet.AddUser</servlet-class>
   </servlet>  
+  
   <servlet>
     <description>This is the description of my J2EE component</description>
     <display-name>This is the display name of my J2EE component</display-name>
     <servlet-name>GetAllOrders</servlet-name>
     <servlet-class>com.pg.servlet.GetAllOrders</servlet-class>
-  </servlet>        
+  </servlet>     
+     
   <servlet>
     <description>This is the description of my J2EE component</description>
     <display-name>This is the display name of my J2EE component</display-name>
     <servlet-name>DeleteOrder</servlet-name>
     <servlet-class>com.pg.servlet.DeleteOrder</servlet-class>
   </servlet>   
+  
   <servlet>
     <description>This is the description of my J2EE component</description>
     <display-name>This is the display name of my J2EE component</display-name>
     <servlet-name>DoNextOrder</servlet-name>
     <servlet-class>com.pg.servlet.DoNextOrder</servlet-class>
   </servlet>   
+  
   <servlet>
     <description>This is the description of my J2EE component</description>
     <display-name>This is the display name of my J2EE component</display-name>
     <servlet-name>DeleteOrderPhone</servlet-name>
     <servlet-class>com.pg.servlet.DeleteOrderPhone</servlet-class>
   </servlet>   
+  
   <servlet>
     <description>This is the description of my J2EE component</description>
     <display-name>This is the display name of my J2EE component</display-name>
     <servlet-name>DeleteUser</servlet-name>
     <servlet-class>com.pg.servlet.DeleteUser</servlet-class>
+  </servlet>  
+  
+  <servlet>
+    <description>This is the description of my J2EE component</description>
+    <display-name>This is the display name of my J2EE component</display-name>
+    <servlet-name>SignOut</servlet-name>
+    <servlet-class>com.pg.servlet.SignOut</servlet-class>
   </servlet>  
     
 
@@ -215,6 +227,11 @@
     <servlet-name>DeleteUser</servlet-name>
     <url-pattern>/DeleteUser</url-pattern>
   </servlet-mapping>
+ 
+  <servlet-mapping>
+    <servlet-name>SignOut</servlet-name>
+    <url-pattern>/SignOut</url-pattern>
+  </servlet-mapping> 
   
   
   <welcome-file-list>
