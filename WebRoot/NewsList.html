@@ -112,7 +112,7 @@
                         	for(var i=0;i<data.length;i++){  
                         		var datatime = data[i].CreatedDate.substring(0,19);
                            		htmltmp=htmltmp+"<tr><td width='15%'><a href='javascript:modify(\""+data[i].NewsCode+"\");' target='_blank'>"+data[i].NewsCode+"</a></td>"+
-                           		"<td width='15%'>"+data[i].title+"</td><td width='40%'>"+data[i].Content+"</td>"+
+                           		"<td width='15%'>"+data[i].title+"</td><td width='40%'><textarea class='input-xxlarge' readonly rows='10'>"+data[i].Content+"</textarea></td>"+
                            		"<td width='15%'>"+datatime+"</td>"+
                            		"<td width='15%'><a href='javascript:deleteNews(\""+data[i].NewsCode+"\");' target='_blank'>"+"删除"+"</a></td></tr>";	
                         	} 
